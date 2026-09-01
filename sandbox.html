@@ -1,0 +1,514 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Sandbox - sandboard</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="Operator docs for running and understanding sandboard">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="landing-9917ab77.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-700d4507.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-a08e2998.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sandboard</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/sandboard-app/sandboard" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/sandboard-app/sandboard/edit/main/docs/docs/sandbox.md" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
+                            <span class=fa-svg id="git-edit-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M421.7 220.3l-11.3 11.3-22.6 22.6-205 205c-6.6 6.6-14.8 11.5-23.8 14.1L30.8 511c-8.4 2.5-17.5 .2-23.7-6.1S-1.5 489.7 1 481.2L38.7 353.1c2.6-9 7.5-17.2 14.1-23.8l205-205 22.6-22.6 11.3-11.3 33.9 33.9 62.1 62.1 33.9 33.9zM96 353.9l-9.3 9.3c-.9 .9-1.6 2.1-2 3.4l-25.3 86 86-25.3c1.3-.4 2.5-1.1 3.4-2l9.3-9.3H112c-8.8 0-16-7.2-16-16V353.9zM453.3 19.3l39.4 39.4c25 25 25 65.5 0 90.5l-14.5 14.5-22.6 22.6-11.3 11.3-33.9-33.9-62.1-62.1L314.3 67.7l11.3-11.3 22.6-22.6 14.5-14.5c25-25 65.5-25 90.5 0z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="sandbox"><a class="header" href="#sandbox">Sandbox</a></h1>
+<p>How a sandboxed agent run works, and the operator-relevant gotchas. Assets live
+under <a href="https://github.com/sandboard-app/sandboard/tree/main/sandbox"><code>sandbox/</code></a>; this page is the prose companion.</p>
+<h2 id="how-credentials-reach-the-agent"><a class="header" href="#how-credentials-reach-the-agent">How credentials reach the agent</a></h2>
+<p>Claude Code talks to OpenShell’s local inference router. OpenCode receives the
+resolved <code>provider/model</code> from the sandbox spec or card when one is set; its
+Anthropic-compatible local route remains available when no direct model is
+selected. Direct OpenRouter clients attach the endpoint-bearing
+<code>sandboard-openrouter</code> provider, which injects <code>OPENROUTER_API_KEY</code> into the
+sandbox and scopes that key to OpenRouter egress. Hermes is one such client; the
+key is sealed by OpenShell and never baked into the image or copied from the host
+at runtime.</p>
+<pre><code>openshell provider create --name sandboard-openrouter --type openrouter \
+  --credential OPENROUTER_API_KEY
+        │
+        ▼
+sandbox agent
+  OPENROUTER_API_KEY=openshell:resolve:…
+        │
+        ▼
+https://openrouter.ai/api/v1
+</code></pre>
+<p>Operator setup (once per gateway):</p>
+<pre><code class="language-bash">openshell provider create --name sandboard-openrouter --type openrouter \
+  --credential OPENROUTER_API_KEY=&lt;your-key&gt;
+</code></pre>
+<p>Inside the sandbox sandboard exports (engine-specific):</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Engine</th><th>Inference env</th><th>Notes</th></tr>
+</thead>
+<tbody>
+<tr><td><code>claude</code></td><td><code>https://inference.local</code></td><td>Claude appends <code>/v1/messages</code>; <code>--bare</code> + <code>--mcp-config</code> for MCP</td></tr>
+<tr><td><code>opencode</code></td><td><code>https://inference.local/v1</code></td><td>Anthropic-compatible fallback; an explicit <code>--model provider/model</code> selects the configured provider (for example <code>openrouter/deepseek/deepseek-v4-flash-0731</code>)</td></tr>
+<tr><td><code>hermes</code></td><td><code>model.base_url=https://openrouter.ai/api/v1</code></td><td>Hermes’ built-in OpenRouter provider uses the endpoint; the attached <code>sandboard-openrouter</code> provider supplies <code>OPENROUTER_API_KEY</code> as an OpenShell placeholder and the image wrapper keeps <code>HERMES_HOME</code> in the sandbox</td></tr>
+</tbody>
+</table>
+</div>
+<p>Do <strong>not</strong> set <code>CLAUDE_CODE_USE_VERTEX=1</code> in the sandbox. That forces direct
+Vertex + ADC/metadata discovery, which OpenShell blocks (real GCE metadata is
+SSRF-hardened). Use the attached provider and the seeded OpenRouter policy instead.</p>
+<h2 id="gateway-client-grpc--mtls-or-oidc"><a class="header" href="#gateway-client-grpc--mtls-or-oidc">Gateway client (gRPC + mTLS or OIDC)</a></h2>
+<p><code>src/openshell.rs</code> talks to the gateway in-process over gRPC. Settings require
+an explicit auth mode:</p>
+<ul>
+<li><strong>mTLS</strong> — HTTPS with sealed client PEMs (board DB).</li>
+<li><strong>OIDC</strong> — HTTPS with <code>authorization: Bearer</code> (via
+<code>openshell_core::auth::EdgeAuthInterceptor</code>); browser PKCE uses a loopback
+<code>redirect_uri</code> (<code>http://127.0.0.1:&lt;port&gt;/callback</code>, same shape as the
+OpenShell CLI). Paste the callback URL into Settings — the loopback page will
+not load on a remote/Tailscale board. Tokens seal in the board DB; refresh
+uses <code>openshell-sdk</code> OIDC helpers.</li>
+</ul>
+<p>Endpoint must be <code>https://</code>. The only host secret file is
+<code>~/.config/sandboard/master.key</code>. Upload/download use exec + tar over that same
+channel — no <code>openshell</code> CLI spawn. We build the tonic channel ourselves and use
+<code>openshell-core</code> / <code>openshell-policy</code> for protos and YAML policy.</p>
+<h2 id="agent-surface"><a class="header" href="#agent-surface">Agent surface</a></h2>
+<p>Card intent and protocol paths come from the supervisor briefing (and files
+under <code>/sandbox/.sandboard</code>). Agents finish via <code>plan.json</code> / <code>report.json</code> /
+<code>escalate.json</code> / <code>split.json</code>. The board is the only tracker — sandboxes do
+not carry a separate issue-store CLI or database.</p>
+<h2 id="spec-env-and-prompt"><a class="header" href="#spec-env-and-prompt">Spec env and prompt</a></h2>
+<p>Sandbox specs (Settings → OpenShell → Sandbox specs) may carry optional
+<strong><code>env</code></strong> (string map) and <strong><code>prompt</code></strong> (seat notes). Edit them on create/edit
+in the UI; they round-trip on the profile API. Details and resolution live under
+<a href="configuration.html#sandbox-specs">Configuration</a>.</p>
+<h3 id="create-time-env-overlay"><a class="header" href="#create-time-env-overlay">Create-time env overlay</a></h3>
+<p>At sandbox create (card path and Cockpit), sandboard builds the OpenShell create env
+as:</p>
+<ol>
+<li><strong><code>agent_env(engine)</code></strong> — toolchain / seat defaults the supervisor always
+passes (<code>PATH</code>, <code>HOME</code>, cargo/npm homes, engine inference URLs, …)</li>
+<li><strong>Profile <code>env</code> overlay</strong> — keys from the resolved sandbox spec</li>
+</ol>
+<p>On a key clash, <strong>the profile wins</strong>. Spec <code>env</code> is <strong>non-secret</strong>: API URLs,
+tool paths, and similar wiring belong here; secrets stay on <strong>Providers</strong>
+(attach them on the same spec). The Settings editor states that distinction
+next to the env key/value fields.</p>
+<h3 id="briefing-injection"><a class="header" href="#briefing-injection">Briefing injection</a></h3>
+<p>When a card is claimed, the grant carries <code>sandbox_prompt</code> from the resolved
+sandbox profile. Cold card <code>briefing()</code> inserts a generic section after
+<strong>Project prompt</strong> when that value is non-empty:</p>
+<pre><code>Sandbox prompt (seat notes):
+…
+</code></pre>
+<p><code>cockpit_briefing()</code> appends the cockpit sandbox profile’s prompt the same way.
+<code>resume_briefing()</code> does <strong>not</strong> re-dump the sandbox prompt — conversation
+memory already has it from the cold start.</p>
+<h3 id="operator-practice"><a class="header" href="#operator-practice">Operator practice</a></h3>
+<p>Put seat wiring on the live board’s sandbox specs — for example an API base URL
+in <code>env</code> and short usage notes in <code>prompt</code>. Do <strong>not</strong> hardcode product-specific
+CLIs or cluster tooling (MicroShift / <code>oc</code>, kubeconfig writers, PATH wrappers,
+post-Ready setup scripts) into the binary or supervisor; those stay out of
+scope of sandboard itself.</p>
+<h2 id="model-selection"><a class="header" href="#model-selection">Model selection</a></h2>
+<p>Which model an agent run uses depends on the engine.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Engine</th><th>How model is chosen</th><th>Operator configures</th></tr>
+</thead>
+<tbody>
+<tr><td><code>agy</code></td><td><code>card.model</code> → sandbox spec <strong>model</strong> → <code>DEFAULT_SEAT_MODEL</code> (<code>gemini-3.6-flash-high</code>)</td><td>Optional <strong>Model</strong> on <strong>Settings → OpenShell → Sandbox specs</strong>; per-card <code>model</code> on claim overrides the spec</td></tr>
+<tr><td><code>cursor</code></td><td><code>card.model</code> → sandbox spec <strong>model</strong> → Cursor account default (no sandboard fallback)</td><td>Same optional <strong>Model</strong> field; omit it to use the account default for your API key</td></tr>
+<tr><td><code>claude</code></td><td>OpenShell <code>inference.local</code> — gateway route from <code>openshell inference set</code></td><td>Gateway CLI once per install (see <a href="#how-credentials-reach-the-agent">How credentials reach the agent</a>); not the sandbox spec model field</td></tr>
+<tr><td><code>opencode</code></td><td><code>card.model</code> → sandbox spec <strong>model</strong> as <code>--model provider/model</code> → OpenCode default</td><td>Set <strong>Model</strong> on the spec and attach the matching provider, such as <code>openrouter</code>, for direct provider routing</td></tr>
+<tr><td><code>hermes</code></td><td><code>card.model</code> → sandbox spec <strong>model</strong> → Hermes image default (<code>openai/gpt-4o-mini</code>)</td><td>Optional <strong>Model</strong> field; the <code>openrouter</code> provider supplies <code>OPENROUTER_API_KEY</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>For engines whose CLI accepts <code>--model</code> on launch, sandboard injects the resolved
+value into the supervisor start script and Cockpit attach/chat argv. Today that
+is <code>agy</code>, <code>cursor</code>, <code>opencode</code>, and <code>hermes</code>. Put <code>--model</code> <strong>before</strong> <code>-p</code> when
+invoking agy manually — <code>-p</code> takes the next argv as the prompt.</p>
+<p>Seeded sandbox specs load with <strong>model</strong> unset; <code>agy</code> cards then get
+<code>DEFAULT_SEAT_MODEL</code> unless you set a spec default or override a card at claim
+time. The card badge and Detail pane show the resolved model when known.</p>
+<h2 id="image"><a class="header" href="#image">Image</a></h2>
+<p><a href="https://github.com/sandboard-app/sandboard/blob/main/sandbox/Containerfile"><code>sandbox/Containerfile</code></a> builds sandboard’s own base — a
+minimal Red Hat UBI9 image, not the OpenShell community image — plus a Rust
+toolchain, split into one build target per agent engine. A <code>shared</code> stage
+installs OS packages (<code>git</code>, <code>nodejs</code>/<code>npm</code>, <code>gh</code>, <code>gcc</code>/<code>make</code>, <code>iproute</code>,
+<code>nftables</code>, <code>socat</code>) and bakes <code>cargo</code>/<code>clippy</code>, then one leaf stage per agent
+engine (<code>cursor</code>, <code>agy</code>, <code>claude</code>, <code>opencode</code>, <code>hermes</code>) installs only that engine’s CLI
+on top — a sandbox only ever carries the one binary it will actually run.</p>
+<p>The toolchain is baked in, but sandboard’s own source and dependency tree are not.
+A card’s own <code>cargo build</code>/<code>npm ci</code> populate <code>$CARGO_HOME</code> (<code>/opt/cargo</code>),
+<code>$CARGO_TARGET_DIR</code> (<code>/opt/cargo-target</code>), and <code>$NPM_CONFIG_CACHE</code>
+(<code>/opt/npm-cache</code>) at runtime by fetching crates.io/npm live — there is no
+pre-baked cache to go stale every time <code>Cargo.lock</code> or <code>src/</code> changes. This
+means the matching Policy has to allow that egress; see
+<a href="#default-vs-cockpit">Default vs Cockpit</a> for the seeded per-engine policies.</p>
+<p>Why UBI9 instead of the OpenShell community image: that image bakes in every
+supported agent CLI, a Python/uv/cloudpickle skills venv, and Ubuntu
+convenience tooling sandboard never touches, regardless of which engine-specific
+target you build. OpenShell’s own documented minimum for a custom sandbox
+image is just <code>iproute2</code> (required) and <code>nftables</code> (optional) — see
+<code>examples/bring-your-own-container/Dockerfile</code> in the OpenShell source.
+Building from <code>ubi9/ubi</code> plus exactly what sandboard needs cuts each image from
+~15GB (the community-base version) to under 2GB.</p>
+<p>OpenShift restricted SCC ignores image <code>USER</code> and runs as a random UID in
+supplementary group 0, so installer trees must not keep foreign uids (<code>cp -a --no-preserve=ownership</code>) and writable paths are <code>chown sandbox:root</code> /
+<code>chgrp 0</code> with <code>g=u</code>. The named <code>sandbox</code> account is <strong>not</strong> a member of GID
+0: OpenShell’s local podman supervisor refuses that (<code>OCI user is a member of prohibited GID 0</code>). Local runs use owner bits; OpenShift uses group 0 bits.</p>
+<pre><code class="language-bash"># from the repo root
+make sandbox        # builds all five quay.io/sandboard-app/sandbox-&lt;engine&gt;:latest
+make sandbox-push   # builds, then pushes all five
+# or: podman build -f sandbox/Containerfile --target cursor -t quay.io/sandboard-app/sandbox-cursor:latest .
+# Docker: CONTAINER_ENGINE=docker make sandbox
+# Different registry: REGISTRY=ghcr.io/you make sandbox
+</code></pre>
+<p>The image flag is <code>--from</code>, not <code>--image</code>. Rebuild when you need a newer
+engine CLI, OS package, or Rust toolchain version — not when sandboard’s own source
+changes, since none of it is baked in. Matching <code>/opt</code> entries belong in the
+<strong>board Policies</strong> catalog (Settings → OpenShell → Policies):
+<code>/opt/cargo</code>, <code>/opt/cargo-target</code>, <code>/opt/npm-cache</code> need <strong>read-write</strong> (a
+card’s build populates them, not the image), while <code>/opt/rust</code> (+ that
+engine’s own <code>/opt/cursor-agent</code>, <code>/opt/opencode</code>, or <code>/opt/hermes</code>) stays
+<strong>read-only</strong>. The Hermes image also bakes Python 3.12 and an editable Hermes
+installation under <code>/opt/hermes</code>; its wrapper keeps runtime state under
+<code>/sandbox/.hermes</code> and merges the Board-injected MCP YAML fragment there.
+<code>src/seed_policies.rs</code> seeds one minimal Cockpit policy per engine matching
+each split image’s contents, including the crates.io/npm/GitHub egress a
+build needs — see <a href="#default-vs-cockpit">Default vs Cockpit</a>.</p>
+<p><strong>Binary identity gotcha, verified live:</strong> <code>/opt/cargo/bin/cargo</code> is rustup’s
+proxy binary — it re-execs the real <code>cargo</code> under
+<code>/opt/rust/toolchains/&lt;version&gt;/bin/cargo</code> at runtime. That’s a process exec,
+not a filesystem symlink, so OpenShell’s literal binary-path matching needs
+its own entry for the toolchain path (a glob, since the version is baked into
+the directory name) or a card’s first <code>cargo build</code> gets a 403 on crates.io
+even with the proxy path allowed.</p>
+<h2 id="operator-relevant-gotchas"><a class="header" href="#operator-relevant-gotchas">Operator-relevant gotchas</a></h2>
+<p><strong>Everything fails as a hang, not an error.</strong> Denied egress, missing
+credential, wedged relay: all silence. Every exec needs a deadline; treat
+silence as failure.</p>
+<p><strong>The image’s <code>ENV</code> does not reach <code>openshell sandbox exec</code>.</strong> Pass toolchain
+vars explicitly in <code>agent_env</code> (supervisor does this), or install wrappers on
+the default PATH. Baking <code>ENV PATH=…</code> into the Containerfile is not enough.</p>
+<p><strong>Upload destination is a directory</strong> (same semantics as the old CLI): uploading
+to <code>/tmp/foo.py</code> creates a <em>directory</em> of that name with the file
+inside it. Put the file in <code>/tmp</code> so it lands at <code>/tmp/foo.py</code>.</p>
+<p><strong>The compute driver can stop on its own.</strong> Classify that as infrastructure,
+not as the card failing: see <code>is_infrastructure</code> in the supervisor.</p>
+<p><strong>Workdir: cold start empties; reclaim preserves.</strong> Brand-new sandbox create
+clears <code>/sandbox/repo</code> so the agent clones into an empty tree from the Remotes
+briefing (<code>origin</code> / <code>upstream</code>). Reclaim of a kept sandbox — park resume and
+Needs You answer share the same reuse path — does <strong>not</strong> wipe <code>/sandbox/repo</code>.
+When a checkout exists, the supervisor refreshes in place: fetch the PR-target
+tip, prefer the local card branch (not a hard reset to <code>origin/</code>), and rebase
+only when the tree is clean. Dirty mid-run edits stay put — MainAdvanced steer
+asks the agent to rebase. Otherwise it ensures the directory without clearing
+prior contents or caches. The supervisor never clones; the agent does.
+<code>/sandbox/.sandboard</code> is always present at start with at least <code>report.schema.json</code>.
+If a clean-tree reuse rebase conflicts, the supervisor backs out and tells the
+agent to resolve it.</p>
+<p><strong>Policy is fixed for a live sandbox</strong> for filesystem and process sections.
+Live policy comes from the board Policies catalog and is applied at create time;
+<code>policy set --wait</code> is expensive.</p>
+<p><strong>Binary paths are matched literally</strong> in the policy. Lists include the real git
+helper paths (e.g. <code>/usr/lib/git-core/git-remote-http</code>).</p>
+<h2 id="default-vs-cockpit"><a class="header" href="#default-vs-cockpit">Default vs Cockpit</a></h2>
+<p>Five sandbox specs come seeded — <code>sandbox-cursor</code>, <code>sandbox-agy</code>,
+<code>sandbox-claude</code>, <code>sandbox-opencode</code>, <code>sandbox-hermes</code> — one per split image, each pointed at a
+matching minimal Cockpit policy (<code>cockpit-cursor</code>, …) with sandboard MCP already
+attached. Seeding never sets a default — which engine to run is your call, and
+a fresh board’s Welcome page flags “Sandbox spec” as not ready until you make
+it. Pick one under <strong>Settings → OpenShell → Sandbox specs</strong> and click <strong>Set
+default</strong>; Cockpit inherits that default until you pick a different seeded row
+(or a profile you made) and click <strong>Use for Cockpit</strong>. These rows are inserts,
+not overwrites — editing one sticks; a re-seed on the next boot leaves your
+edit alone.</p>
+<p>Attach on create starts empty for a profile you make yourself — add providers
+under <strong>Providers</strong>, then check them on the spec. Add sandboard MCP /
+package-registry / toolchain egress under <strong>Policies</strong> when you need it.</p>
+<p>Cockpit MCP does <strong>not</strong> use <code>host.docker.internal</code> and does not cross the
+network at all. When the seat is Ready, sandboard keeps a board-owned
+<code>ExecSandboxInteractive</code> relay running one-shot <code>socat UNIX-LISTEN:… STDIO</code>
+on a local Unix socket inside the sandbox, and wires its gRPC-piped
+stdin/stdout straight into the same <code>Operator</code> MCP handler that serves host
+<code>/mcp</code> (<code>rmcp::serve_server</code> over the pipe). Disconnect ends the listen so
+the board can re-spawn; the agent’s MCP client is stdio (<code>socat - UNIX-CONNECT:&lt;socket&gt;</code>) — same path on local Docker/Podman and remote
+Kubernetes, since it never leaves the sandbox’s own netns. OpenShell SSH has
+no RemoteForward either way, so this was never a <code>ssh -R</code> option. Not <code>nc</code>:
+see <a href="cockpit.html#how-the-mcp-relay-works">Cockpit</a> for why.</p>
+<h2 id="antigravity--agy"><a class="header" href="#antigravity--agy">Antigravity / agy</a></h2>
+<p>Bare OpenShell <code>generic</code> providers do <strong>not</strong> resolve
+<code>openshell:resolve:…</code> placeholders — the egress proxy only substitutes on
+endpoints declared by a <strong>provider type</strong>. Sandboard ships board provider types
+<a href="https://github.com/sandboard-app/sandboard/blob/main/sandbox/openshell/antigravity.yaml"><code>sandbox/openshell/antigravity.yaml</code></a>
+(<code>auth_style: bearer</code>, Cloud Code / Google API hosts) and
+<a href="https://github.com/sandboard-app/sandboard/blob/main/sandbox/openshell/cursor-agent.yaml"><code>sandbox/openshell/cursor-agent.yaml</code></a>
+(<code>CURSOR_API_KEY</code>, Bearer on Cursor API hosts). Both seed into
+<strong>Settings → OpenShell → Provider types</strong> and import on provider Sync when
+missing. Builtin OpenShell <code>cursor</code> remains egress-only (no credentials).</p>
+<p>Under <strong>Settings → OpenShell → Providers</strong>, use <strong>Log in with Google</strong> on the
+<code>antigravity</code> provider (host-mediated PKCE against Google’s Antigravity
+installed-app client). That seals the access token plus refresh material on the
+board; the gateway’s <code>oauth2_refresh_token</code> strategy keeps <code>ya29</code> fresh. sandboard
+does not read the host keychain — it makes no assumptions about credentials
+sitting on the machine it runs on.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Layer</th><th>Holds</th></tr>
+</thead>
+<tbody>
+<tr><td>Board provider <code>antigravity</code></td><td>Sealed <code>ANTIGRAVITY_ACCESS_TOKEN</code> + refresh material (<code>client_id</code> / <code>client_secret</code> / <code>refresh_token</code>) from Log in with Google</td></tr>
+<tr><td>Gateway</td><td>Live credential + refresh; injects placeholder env into attached sandboxes</td></tr>
+<tr><td>Seat token file</td><td>Placeholder only + far-future expiry; <strong>no</strong> seat-side <code>refresh_token</code></td></tr>
+<tr><td>Seat <code>settings.json</code></td><td><code>enableTelemetry: false</code>, <code>gcp.project</code> / <code>gcp.location</code> from Board provider config <code>ANTIGRAVITY_GCP_PROJECT</code> / <code>ANTIGRAVITY_GCP_LOCATION</code> (Settings → Providers)</td></tr>
+<tr><td>Seat env (agy launch)</td><td><code>GOOGLE_CLOUD_PROJECT</code> / <code>GOOGLE_CLOUD_QUOTA_PROJECT</code> set from the same Board project so they win over Vertex’s injected project — agy otherwise leaves <code>quotaProject</code> empty</td></tr>
+<tr><td>Seat default model</td><td><code>gemini-3.6-flash-high</code> (<code>DEFAULT_SEAT_MODEL</code>) when the spec and card omit model — requires the consumer Antigravity OAuth client from Settings → Log in with Google (the Business Cloud Code client returns Flash rows without <code>vertexModelId</code>)</td></tr>
+</tbody>
+</table>
+</div>
+<p>Set a default on the <code>sandbox-agy</code> spec under <strong>Settings → OpenShell → Sandbox
+specs</strong> to avoid repeating the same model on every card. A Task’s <code>model</code> field
+on claim still wins over the spec.</p>
+<p>Provider type YAML must list <code>aiplatform.googleapis.com</code> (and <code>*-aiplatform.googleapis.com</code>) so <code>streamGenerateContent</code> / OpenAI-compat chat is allowed under <code>_provider_antigravity</code>, not only the cockpit <code>vertex_ai</code> policy group.</p>
+<p>Attach names that are not in the Providers catalog are pruned on board load.</p>
+<h2 id="related"><a class="header" href="#related">Related</a></h2>
+<ul>
+<li><a href="first-agent.html">Your first agent</a> — Welcome/Help OpenShell onboarding, then the first run</li>
+<li><a href="troubleshooting.html">Troubleshooting</a> — the gotchas above, as symptoms</li>
+<li><a href="configuration.html#policies">Configuration</a> — Policies catalog vs Sandbox specs</li>
+<li><a href="configuration.html#sandbox-specs">Configuration</a> — spec resolution, engines, env / prompt</li>
+<li><a href="#spec-env-and-prompt">Spec env and prompt</a> — create-time overlay and briefing injection</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="architecture.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="invariants.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="architecture.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="invariants.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="mermaid-eefea253.min.js"></script>
+        <script src="mermaid-init-ccf746f1.js"></script>
+        <script src="landing-76cb3bff.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

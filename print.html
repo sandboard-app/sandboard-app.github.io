@@ -1,0 +1,2220 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>sandboard</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="Operator docs for running and understanding sandboard">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="landing-9917ab77.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-700d4507.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-a08e2998.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sandboard</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/sandboard-app/sandboard" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <div class="sb-landing" data-landing="">
+<header class="sb-nav" aria-label="Primary navigation">
+<a class="sb-brand" href="#landing-title" aria-label="sandboard home">
+<svg class="sb-brand-mark" viewbox="0 0 128 128" aria-hidden="true">
+<g fill="currentColor" transform="translate(64 64) rotate(45)">
+<path d="M-34 -34 H34 V-8 Q8 -2 -34 6 Z" />
+<path d="M-34 14 Q0 6 34 12 L34 16 Q0 10 -34 18 Z" />
+<path d="M-34 26 Q8 18 34 24 V34 H-34 Z" />
+</g>
+</svg>
+<span>sandboard</span>
+</a>
+<nav class="sb-nav-links">
+<a href="#loop">The loop</a>
+<a href="#runtime">OpenShell</a>
+<a href="#tour">Tour</a>
+<a href="#architecture">Architecture</a>
+</nav>
+<div class="sb-nav-meta">
+<span>open source / self-hosted</span>
+<a class="sb-nav-cta" href="#quickstart">Get started <span aria-hidden="true">↗</span></a>
+</div>
+
+</header>
+<section class="sb-hero" aria-labelledby="landing-title">
+<div class="sb-hero-copy">
+<p class="sb-eyebrow sb-reveal"><span class="sb-pulse" aria-hidden="true"></span> an open-source platform for coding agents</p>
+
+<h1 id="landing-title" class="sb-reveal sb-delay-1">Run coding agents<br /><em>in OpenShell sandboxes.</em></h1>
+
+<p class="sb-hero-lede sb-reveal sb-delay-2">Sandboard coordinates coding agents. OpenShell provides the isolated execution environment. You create a Project, dispatch its Tasks, and review the resulting changes or pull request on GitHub.</p>
+
+<div class="sb-hero-actions sb-reveal sb-delay-3">
+<a class="sb-button sb-button-primary" href="#quickstart">Read the quickstart <span aria-hidden="true">↗</span></a>
+<a class="sb-button sb-button-quiet" href="#tour">See how it works</a>
+</div>
+
+<div class="sb-install-line sb-reveal sb-delay-3">
+<span>run it locally</span>
+<code>git clone https://github.com/sandboard-app/sandboard.git</code>
+<button class="sb-copy" type="button" data-copy="git clone https://github.com/sandboard-app/sandboard.git" aria-label="Copy clone command">copy</button>
+</div>
+
+</div>
+
+<div class="sb-hero-art sb-reveal sb-delay-2" aria-label="A sandboard workflow moving from backlog to done">
+<div class="sb-board-window">
+<div class="sb-window-bar">
+<span class="sb-window-controls" aria-hidden="true"><i></i><i></i><i></i></span>
+<span class="sb-window-title">sandboard / operator view</span>
+<span>WORKFLOW</span>
+</div>
+
+<div class="sb-window-meta"><strong>SANDBOXED AGENT WORK</strong><span>OpenShell · policy · provider</span></div>
+
+<div class="sb-board-grid">
+<div class="sb-lane">
+<div class="sb-lane-head"><span>Backlog</span><span class="sb-lane-count">2</span></div>
+
+<div class="sb-mini-card"><span class="sb-card-key">PLAN-01</span><span class="sb-card-title">Shape the next change</span></div>
+
+<div class="sb-mini-card"><span class="sb-card-key">TASK-04</span><span class="sb-card-title">Waiting on its dependency</span></div>
+
+</div>
+
+<div class="sb-lane">
+<div class="sb-lane-head"><span>Running</span><span class="sb-lane-count">1</span></div>
+
+<div class="sb-mini-card is-live"><span class="sb-card-key">TASK-03</span><span class="sb-card-title">Agent is working</span></div>
+
+</div>
+
+<div class="sb-lane">
+<div class="sb-lane-head"><span>Needs You</span><span class="sb-lane-count">1</span></div>
+
+<div class="sb-mini-card is-waiting"><span class="sb-card-key">TASK-02</span><span class="sb-card-title">A decision is waiting</span></div>
+
+</div>
+
+<div class="sb-lane">
+<div class="sb-lane-head"><span>Review</span><span class="sb-lane-count">1</span></div>
+
+<div class="sb-mini-card"><span class="sb-card-key">TASK-01</span><span class="sb-card-title">Pull request is ready</span></div>
+
+</div>
+
+<div class="sb-lane">
+<div class="sb-lane-head"><span>Done</span><span class="sb-lane-count">12</span></div>
+
+<div class="sb-mini-card"><span class="sb-card-key">MERGED</span><span class="sb-card-title">Merged on GitHub</span></div>
+
+</div>
+
+</div>
+
+<div class="sb-art-footer"><span>board / sandbox / github</span><strong>review on github</strong></div>
+
+</div>
+
+</div>
+
+</section>
+<div class="sb-scroll-cue" aria-hidden="true">scroll to see the handoff</div>
+
+<section class="sb-manifesto" id="runtime" aria-labelledby="manifesto-title">
+<div class="sb-reveal">
+<p class="sb-label">what sandboard is</p>
+
+<h2 id="manifesto-title">The board for<br /><em>coding agents.</em></h2>
+
+</div>
+
+<div class="sb-manifesto-copy sb-reveal sb-delay-1">
+<p>Sandboard is the part you operate: the control plane for repository work. It stores Projects and Tasks, provides the operator UI and MCP endpoint, and moves each Task from backlog to review.</p>
+
+<p>OpenShell is the isolated execution runtime. Sandboard uses its gateway to create the sandbox, select the image, apply the network policy, inject provider credentials at runtime, and start the agent.</p>
+
+<div class="sb-manifesto-note"><span>separate responsibilities</span><span>Sandboard controls lifecycle; OpenShell controls execution</span></div>
+
+</div>
+
+</section>
+<section class="sb-loop" id="loop" data-story-root="" data-stage="shape" aria-labelledby="loop-title">
+<div class="sb-loop-intro">
+<div class="sb-reveal">
+<p class="sb-label">how a Task moves</p>
+
+<h2 id="loop-title">Sandboard starts the run.<br /><em>OpenShell isolates it.</em></h2>
+
+</div>
+
+<p class="sb-loop-intro-copy sb-reveal sb-delay-1">The board stores state and operator actions. Sandboard uses the OpenShell gateway to create the isolated environment, watch the run, and collect the agent’s result.</p>
+
+</div>
+
+<div class="sb-story">
+<div class="sb-stage-column">
+<div class="sb-story-stage" aria-label="Animated work card moving through the sandboard columns">
+<div class="sb-stage-header"><span><strong>sandboard</strong> / live trace</span><span>card 01</span></div>
+
+<div class="sb-stage-board" aria-hidden="true">
+<div class="sb-stage-lane"></div>
+<div class="sb-stage-lane"></div>
+<div class="sb-stage-lane"></div>
+<div class="sb-stage-lane"></div>
+<div class="sb-stage-lane"></div>
+
+<div class="sb-stage-path"></div>
+
+<div class="sb-stage-card"><span class="sb-stage-card-key">task / in OpenShell</span><span class="sb-stage-card-title">Implement the requested change</span></div>
+
+</div>
+
+<div class="sb-stage-caption">
+<span data-for="shape"><strong>01 / create</strong><em>Create a Project and Task.</em></span>
+<span data-for="dispatch"><strong>02 / provision</strong><em>OpenShell creates the sandbox.</em></span>
+<span data-for="decide"><strong>03 / observe</strong><em>Sandboard tracks the run.</em></span>
+<span data-for="merge"><strong>04 / review</strong><em>Review the pull request.</em></span>
+</div>
+
+<div class="sb-stage-footer"><span>sandboard tracks output</span><strong>●</strong></div>
+
+</div>
+
+</div>
+
+<div class="sb-story-steps">
+<article class="sb-story-step sb-reveal is-active" data-stage="shape">
+<span class="sb-story-step-number">01 / create</span>
+<h3>Create a Project.<br /><em>Describe the Task.</em></h3>
+
+<p>Create a Project, point it at a repository, and explain what you want. Sandboard creates an Initial plan that you can edit before it becomes implementation work.</p>
+
+<a href="#concepts">Understand Projects and Tasks</a>
+</article>
+<article class="sb-story-step sb-reveal" data-stage="dispatch">
+<span class="sb-story-step-number">02 / provision</span>
+<h3>OpenShell<br /><em>creates the sandbox.</em></h3>
+
+<p>When you dispatch a Task, Sandboard asks the OpenShell gateway to provision a sandbox with the selected image and network policy, make the configured provider available, and start the agent.</p>
+
+<a href="#sandbox">See how sandboxes work</a>
+</article>
+<article class="sb-story-step sb-reveal" data-stage="decide">
+<span class="sb-story-step-number">03 / observe</span>
+<h3>Sandboard<br /><em>tracks the run.</em></h3>
+
+<p>Sandboard observes the agent’s output, keeps the card state current, and collects a plan, report, escalation, or split artifact. The worker cannot call the board directly.</p>
+
+<a href="#workflow">Learn the daily workflow</a>
+</article>
+<article class="sb-story-step sb-reveal" data-stage="merge">
+<span class="sb-story-step-number">04 / review</span>
+<h3>Review the<br /><em>pull request.</em></h3>
+
+<p>Completed work arrives with its pull request and evidence. Sandboard can surface the change, but you merge it on GitHub.</p>
+
+<a href="#invariants">Read the invariants</a>
+</article>
+</div>
+
+</div>
+
+</section>
+<section class="sb-boundary" id="boundary" aria-labelledby="boundary-title">
+<div class="sb-reveal">
+<p class="sb-label">who owns what</p>
+
+<h2 id="boundary-title">Sandboard owns the work.<br /><em>OpenShell runs the agent.</em></h2>
+
+</div>
+
+<div class="sb-role-stack sb-reveal sb-delay-1">
+<div class="sb-role"><span class="sb-role-index">01</span>
+<h3>Sandboard</h3>
+<p>Stores Projects and Tasks, serves the UI and MCP endpoint, and runs the supervisor that owns lifecycle transitions.</p>
+</div>
+
+<div class="sb-role"><span class="sb-role-index">02</span>
+<h3>OpenShell</h3>
+<p>Creates the sandbox and applies the image, network policy, and provider credential binding.</p>
+</div>
+
+<div class="sb-role"><span class="sb-role-index">03</span>
+<h3>Agent</h3>
+<p>Works inside the sandbox with repository access and no network path back to Sandboard.</p>
+</div>
+
+<div class="sb-role"><span class="sb-role-index">04</span>
+<h3>GitHub</h3>
+<p>Receives the pull request. You review and merge it; Sandboard does not merge it for you.</p>
+</div>
+
+</div>
+
+</section>
+<section class="sb-start" id="start" aria-labelledby="start-title">
+<div class="sb-reveal">
+<p class="sb-eyebrow">the complete setup</p>
+
+<h2 id="start-title">Run Sandboard with OpenShell.<br /><em>Then dispatch agent work.</em></h2>
+
+<p class="sb-start-copy">Start the board locally, connect an OpenShell gateway, choose a sandbox spec, and attach a provider. Without those pieces, Sandboard can show the board but it cannot run an agent.</p>
+
+<div class="sb-start-links">
+<a href="#quickstart">Quickstart <span aria-hidden="true">↗</span></a>
+<a href="#tour">Read the tour <span aria-hidden="true">↗</span></a>
+<a href="#your-first-agent">First agent <span aria-hidden="true">↗</span></a>
+</div>
+
+</div>
+
+<div class="sb-start-panel sb-reveal sb-delay-1">
+<div class="sb-code-card">
+<div class="sb-code-card-head"><span>local / first run</span><span>01—03</span></div>
+
+<div class="sb-code-text" role="textbox" aria-label="Quickstart commands"><span>git clone https://github.com/sandboard-app/sandboard.git</span><span>cd sandboard</span><span>cargo run</span></div>
+
+<button class="sb-copy sb-code-copy" type="button" data-copy="git clone https://github.com/sandboard-app/sandboard.git&#92;ncd sandboard&#92;ncargo run" aria-label="Copy quickstart commands">copy</button>
+</div>
+
+</div>
+
+</section>
+<footer class="sb-footer">
+<a href="#landing-title">sandboard</a>
+<span class="sb-footer-center">Sandboard + OpenShell + GitHub</span>
+<a class="sb-footer-right" href="https://github.com/sandboard-app/sandboard">github ↗</a>
+</footer>
+</div>
+
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="tour"><a class="header" href="#tour">Tour</a></h1>
+<p>One card’s life, start to finish. Nothing here needs to be installed — read it
+first and decide whether the loop is one you want.</p>
+<p>The board below is a real sandboard running against a fixture. Every screenshot on
+this page is captured from the running UI, so what you see is what ships.</p>
+<h2 id="1-the-board"><a class="header" href="#1-the-board">1. The board</a></h2>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/desktop-board.png" alt="The sandboard board"><span class="img-wrapper"><img src="images/desktop-board.png" alt="The sandboard board"></span></label></p>
+<p>Five columns, each asking a different question:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Column</th><th>The question it asks</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Backlog</strong></td><td>What could start?</td></tr>
+<tr><td><strong>Running</strong></td><td>What is an agent working on right now?</td></tr>
+<tr><td><strong>Needs You</strong></td><td>What is stopped, waiting on a human?</td></tr>
+<tr><td><strong>Review</strong></td><td>What finished and is waiting for judgement?</td></tr>
+<tr><td><strong>Done</strong></td><td>What landed?</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Needs You</strong> sits above the columns, with answer buttons on the card — so
+blocked decisions are obvious without opening a drawer.</p>
+<p>In Backlog, cards carry <strong><code>⊘ waiting on</code></strong> chips naming what blocks them —
+<code>#3 Fail closed when CI is red</code> cannot start until <code>#2 Surface PR checks</code> lands.
+Blocked cards sort to the bottom, so the top of the column is what can start
+now.</p>
+<h2 id="2-a-project-proposes-its-own-breakdown"><a class="header" href="#2-a-project-proposes-its-own-breakdown">2. A Project proposes its own breakdown</a></h2>
+<p>You do not write the task list. You create a <strong>Project</strong>, point it at a repo,
+and say what you want. sandboard creates one claimable card — the <em>Initial plan</em> —
+and an agent reads the repo and proposes the breakdown.</p>
+<p>That proposal comes back as a card in Review:</p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/desktop-drawer-plan.png" alt="The Initial plan card with its proposed Tasks"><span class="img-wrapper"><img src="images/desktop-drawer-plan.png" alt="The Initial plan card with its proposed Tasks"></span></label></p>
+<p>Four proposed Tasks, each with a key, an intent, a definition of done, and its
+dependencies. <strong>You can edit any of it before approving.</strong> Approve, and those
+four become real cards in Backlog with the dependency edges already wired — the
+same <code>⊘ waiting on</code> chips you saw in step 1.</p>
+<p>This is the cheapest place to fix the plan. A card that passes every later check
+can still be building the wrong thing if the breakdown was wrong here.</p>
+<h2 id="3-an-agent-picks-up-a-card"><a class="header" href="#3-an-agent-picks-up-a-card">3. An agent picks up a card</a></h2>
+<p>Dispatch a Backlog card (<strong>Start</strong> in the UI) and the supervisor claims it,
+creates a sandbox, and runs an agent inside it.</p>
+<p>Running cards show what you would want mid-flight: which engine, how much of
+the run budget is left, and the sandbox name for logs.</p>
+<p>The agent has <strong>no network path back to sandboard</strong>. It cannot see the board, cannot
+claim its own card, and cannot approve its own review. The supervisor speaks for
+it. Liveness is read from the agent’s output stream — not from a keepalive that
+could fire while the agent is wedged.</p>
+<h2 id="4-when-it-needs-a-decision-it-stops"><a class="header" href="#4-when-it-needs-a-decision-it-stops">4. When it needs a decision, it stops</a></h2>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/desktop-drawer-needs-you.png" alt="A card waiting in Needs You"><span class="img-wrapper"><img src="images/desktop-drawer-needs-you.png" alt="A card waiting in Needs You"></span></label></p>
+<p>An agent that hits a genuine ambiguity does not guess and does not spin. It
+writes the question with options and stops. The card lands in <strong>Needs You</strong> and
+burns nothing until you answer.</p>
+<p>Answering is one tap, from the band at the top of the board. The answer reaches
+the agent on its next turn.</p>
+<h2 id="5-finished-work-waits-in-review"><a class="header" href="#5-finished-work-waits-in-review">5. Finished work waits in Review</a></h2>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/desktop-drawer-review.png" alt="A finished card in Review with its pull request"><span class="img-wrapper"><img src="images/desktop-drawer-review.png" alt="A finished card in Review with its pull request"></span></label></p>
+<p>The agent pushes a branch and opens a pull request. The card moves to <strong>Review</strong>
+carrying the PR link, the diffstat, and whichever gates it ran.</p>
+<p>Review is sorted by size and risk, not arrival time — a large change with a
+failed gate sorts above a tiny clean one.</p>
+<p><strong>Approving in sandboard shows the PR.</strong> You merge on GitHub. When the merge lands, a
+webhook moves the card to Done. Siblings still in Review stay put unless GitHub
+reports CONFLICTING — then they bounce to Backlog for reclaim and rebase.
+UNKNOWN retries; repeated overlapping conflicts escalate to Needs You.</p>
+<h2 id="6-seeing-the-shape-of-the-work"><a class="header" href="#6-seeing-the-shape-of-the-work">6. Seeing the shape of the work</a></h2>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/desktop-graph.png" alt="The dependency graph view"><span class="img-wrapper"><img src="images/desktop-graph.png" alt="The dependency graph view"></span></label></p>
+<p>Columns answer “what is happening”. The graph answers “what depends on what” —
+useful when a plan has grown past what the chips on individual cards can show.</p>
+<h2 id="and-on-a-phone"><a class="header" href="#and-on-a-phone">And on a phone</a></h2>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="images/phone-board.png" alt="The board on a phone"><span class="img-wrapper"><img src="images/phone-board.png" alt="The board on a phone"></span></label></p>
+<p>On a phone you mostly see decisions that need you. If that list is short, you
+can leave the rest of the board alone until you are back at a desk.</p>
+<h2 id="next"><a class="header" href="#next">Next</a></h2>
+<ul>
+<li>Run the board yourself: <a href="#quickstart">Quickstart</a></li>
+<li>The vocabulary in one place: <a href="#concepts">Concepts</a> · <a href="#glossary">Glossary</a></li>
+<li>First sandboxed run: empty-board <strong>Welcome</strong> / <strong>Help</strong>, then <a href="#your-first-agent">Your first agent</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="concepts"><a class="header" href="#concepts">Concepts</a></h1>
+<p>The ideas the rest of the docs assume. For terms in isolation, see the
+<a href="#glossary">Glossary</a>; for the loop with pictures, the <a href="#tour">Tour</a>.</p>
+<h2 id="the-board-runs-the-work"><a class="header" href="#the-board-runs-the-work">The board runs the work</a></h2>
+<p>sandboard’s board is not a status report of work elsewhere. Changing a card <em>is</em> an
+action: dispatch claims it, Approve creates Tasks from a proposal, answering
+Needs You unblocks a stopped agent.</p>
+<p>The UI and the MCP API share <strong>one state machine</strong>. Every mutation goes through
+<code>Board</code> in <code>src/store.rs</code>, so UI and MCP cannot drift apart.</p>
+<h2 id="project-and-task"><a class="header" href="#project-and-task">Project and Task</a></h2>
+<p>One node type, two roles:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Kind</th><th>Role</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Project</strong></td><td>Container for the Plan, optional <code>project_prompt</code> extras, an optional sandbox override, and auto-dispatch. Not claimable work itself.</td></tr>
+<tr><td><strong>Task</strong></td><td>The claimable leaf. Initial plan, implementation cards, and follow-ups are all Tasks under a Project.</td></tr>
+</tbody>
+</table>
+</div>
+<p>Tasks are flat siblings related by dependency edges, not a nested hierarchy.
+There is no Epic or Story layer — dependencies already say what blocks what.</p>
+<p>Every Project gets one claimable <strong>Initial plan</strong> Task. An agent reads the repo
+and proposes the breakdown; you edit and Approve; the proposal becomes real
+cards. Same path when a card turns out too big — the agent proposes siblings
+and you approve those.</p>
+<p>Operators can also add Backlog Tasks directly under an existing Project — board
+<strong>Create Task</strong> or MCP <code>create_task</code> — without re-running Initial plan. Each
+Task must name its clone target (<code>owner/name</code>) in intent/DoD. Approve still
+only materializes proposals and never merges.</p>
+<h2 id="configuration-layers"><a class="header" href="#configuration-layers">Configuration layers</a></h2>
+<p>Configuration is layered; lower layers are operator setup, upper layers are what
+workers read at claim time. Full detail: <a href="#configuration">Configuration</a>.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Layer</th><th>Examples</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Process boot</strong></td><td><code>SANDBOARD_DATABASE_URL</code>, compile-time Project + Task hierarchy</td></tr>
+<tr><td><strong>Board Settings</strong></td><td>OpenShell Policies, sandbox specs, agent runtime (incl. standing prompt), Forge</td></tr>
+<tr><td><strong>Project fields</strong></td><td><code>clone_repo</code>, optional <code>sandbox_profile_id</code> override</td></tr>
+<tr><td><strong><code>project_prompt</code></strong></td><td>Optional Project-only standing extras</td></tr>
+<tr><td><strong>Per-card intent / DoD</strong></td><td>Clone target for this card, card-specific gates, operational proof</td></tr>
+</tbody>
+</table>
+</div>
+<p>Boot, Settings, and Project fields are <strong>operator concerns</strong>. Do not put database
+URLs, Policy YAML, or sandbox spec ids in standing prompts.</p>
+<p>Board-wide agent policy is Settings → Agent runtime <strong>standing prompt</strong> (empty by
+default). Briefings also inject a tiny hardwired protocol (<code>PROTOCOL_MINIMUM</code>).
+<code>project_prompt</code> is optional Project extras — not seeded on create. <strong>Quality
+gates</strong> belong in standing text when you want them; name the toolchain
+explicitly. sandboard does not assume <code>cargo</code> unless standing text or the card’s DoD
+says so.</p>
+<h2 id="operator-and-worker"><a class="header" href="#operator-and-worker">Operator and worker</a></h2>
+<p>Three roles, different reach:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Role</th><th>Who</th><th>Reach</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Operator</strong></td><td>You, and any chat agent you drive sandboard from</td><td>MCP at <code>/mcp</code>: shape Projects, triage, dispatch, park / steer / halt. Operator tools only.</td></tr>
+<tr><td><strong>Worker</strong></td><td>The agent working a card, inside a sandbox</td><td>GitHub and inference. <strong>No network path to sandboard.</strong></td></tr>
+<tr><td><strong>Cockpit</strong></td><td>A privileged sandbox you attach a terminal to</td><td>sandboard’s operator tools, plus inference and GitHub. No package-registry egress.</td></tr>
+</tbody>
+</table>
+</div>
+<p>Workers cannot call sandboard. An agent that could reach the board’s MCP could
+approve its own review — so the supervisor calls <code>claim</code> / <code>heartbeat</code> /
+<code>report</code> on its behalf.</p>
+<p>Cockpit uses a separate sandbox spec (and Policy) so privileged reach to the
+board does not share the worker’s network allow-list.</p>
+<h2 id="how-an-agent-finishes"><a class="header" href="#how-an-agent-finishes">How an agent finishes</a></h2>
+<p>A worker has no API to call, so it finishes by writing a file into its sandbox:
+<code>plan.json</code>, <code>report.json</code>, <code>escalate.json</code>, or <code>split.json</code>. The supervisor
+picks the file up and moves the card.</p>
+<p>An agent that hits an ambiguity <strong>stops</strong> rather than guessing. It writes
+<code>escalate.json</code> with the question and options; the card lands in Needs You and
+costs nothing until you answer.</p>
+<h2 id="where-the-human-stays"><a class="header" href="#where-the-human-stays">Where the human stays</a></h2>
+<p><strong>You merge on GitHub.</strong> Approving in sandboard surfaces the pull request. sandboard has
+no write access to your default branch.</p>
+<p><strong>Liveness is observed.</strong> The supervisor parses the agent’s output stream. There
+is no keepalive timer that can claim a wedged agent is alive.</p>
+<p>The full set, with the reasoning: <a href="#invariants">Invariants</a>.</p>
+<h2 id="where-to-go-next"><a class="header" href="#where-to-go-next">Where to go next</a></h2>
+<ul>
+<li>See the loop → <a href="#tour">Tour</a></li>
+<li>Run the board → <a href="#quickstart">Quickstart</a></li>
+<li>Turn on agents → Welcome/Help OpenShell guide, then <a href="#your-first-agent">Your first agent</a></li>
+<li>Day-to-day operation → <a href="#workflow">Workflow</a></li>
+<li>How the pieces fit → <a href="#architecture">Architecture</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="glossary"><a class="header" href="#glossary">Glossary</a></h1>
+<p>Every term the rest of the docs assume, in one place.</p>
+<h2 id="the-board"><a class="header" href="#the-board">The board</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Term</th><th>Meaning</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Card</strong></td><td>Any item on the board. A card is either a Project or a Task.</td></tr>
+<tr><td><strong>Project</strong></td><td>Groups Tasks, the Plan, <code>clone_repo</code>, optional <code>project_prompt</code> extras, and an optional sandbox override. Agents claim Tasks, not Projects.</td></tr>
+<tr><td><strong>Standing prompt</strong></td><td>Optional board-wide agent policy on Settings → Agent runtime. Empty by default; hardwired protocol is separate. Injected on claim when non-empty.</td></tr>
+<tr><td><strong><code>project_prompt</code></strong></td><td>Optional Project-only standing extras. Not seeded with the board essay on create.</td></tr>
+<tr><td><strong>Quality gates</strong></td><td>Test/lint commands agents run before publish. Named in the board standing prompt, <code>project_prompt</code>, or a card’s definition of done. sandboard does not assume <code>cargo</code> or any toolchain unless prose names it.</td></tr>
+<tr><td><strong>Configuration layers</strong></td><td>Stacked setup: process boot → board Settings (incl. standing prompt) → Project fields → optional <code>project_prompt</code> → per-card intent/DoD. See <a href="#configuration">Configuration</a>.</td></tr>
+<tr><td><strong>Task</strong></td><td>The claimable leaf. Initial plan, implementation cards, and follow-ups are all Tasks under a Project.</td></tr>
+<tr><td><strong>Initial plan</strong></td><td>The Task sandboard creates with every Project. An agent claims it, reads the repo, and proposes the sibling Tasks.</td></tr>
+<tr><td><strong>Proposal</strong></td><td>The breakdown an Initial plan (or a split) hands back. Editable until you Approve; Approve turns it into real cards.</td></tr>
+<tr><td><strong>Blocked by</strong></td><td>A dependency edge between Tasks. Blocked cards sort last in Backlog and render a <code>⊘ waiting on</code> chip.</td></tr>
+<tr><td><strong>Swimlane</strong></td><td>One Project’s row on the board, with its own columns and auto-dispatch toggle.</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="columns-and-states"><a class="header" href="#columns-and-states">Columns and states</a></h2>
+<p>Several internal states collapse into one column, because the question you ask
+of them is the same.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Column</th><th>States</th><th>The question</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Backlog</strong></td><td><code>backlog</code></td><td>What could start?</td></tr>
+<tr><td><strong>Running</strong></td><td><code>claimed</code>, <code>running</code>, <code>splitting</code></td><td>What is an agent on right now?</td></tr>
+<tr><td><strong>Needs You</strong></td><td><code>needs_human</code></td><td>What is stopped, waiting on a person?</td></tr>
+<tr><td><strong>Review</strong></td><td><code>review</code></td><td>What finished and wants judgement?</td></tr>
+<tr><td><strong>Done</strong></td><td><code>done</code></td><td>What landed?</td></tr>
+<tr><td><strong>Retired</strong></td><td><code>retired</code></td><td>Archived or cut. Kept for history, not deleted.</td></tr>
+</tbody>
+</table>
+</div>
+<p><code>draft</code> and <code>shaping</code> exist for cards still being formed.</p>
+<h2 id="actions"><a class="header" href="#actions">Actions</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Term</th><th>What it does</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Dispatch</strong> / <strong>Start</strong></td><td>Marks a Backlog card as wanting to run. The supervisor picks it up on the next tick.</td></tr>
+<tr><td><strong>Auto mode</strong></td><td>Per-Project. Queues every claimable Backlog leaf automatically. Does not approve, answer Needs You, or unpark.</td></tr>
+<tr><td><strong>Create Task</strong> / <code>create_task</code></td><td>Add a flat Backlog Task under an existing Project (board UI or MCP) without re-running Initial plan. Parent must be a Project. Each Task names its clone target in intent/DoD. Not the same as Approve.</td></tr>
+<tr><td><strong>Approve</strong></td><td>On a proposal, creates the sibling Tasks. On a Review card, surfaces the PR. Does not merge. A GitHub PR <code>APPROVED</code> review does not Approve in sandboard.</td></tr>
+<tr><td><strong>Request changes</strong></td><td>Sends a Review card back with a note that reaches the next run’s briefing. Does not restart it. Submitted GitHub <code>CHANGES_REQUESTED</code> / <code>COMMENT</code> reviews take the same Board path (pointer steer → Backlog); see <a href="#pr-review-feedback">Workflow</a>.</td></tr>
+<tr><td><strong>Steer</strong></td><td>A soft note stored for the next claim. Does not interrupt a running turn.</td></tr>
+<tr><td><strong>Park</strong></td><td>Stops the agent but keeps the sandbox and conversation. Resume continues the same thread.</td></tr>
+<tr><td><strong>Halt</strong></td><td>Stops the agent, clears the conversation, deletes the sandbox. The next dispatch starts clean.</td></tr>
+<tr><td><strong>Archive</strong></td><td>Hides a Project (and its cards) from the active board via <code>cut_scope</code>. Not delete — toggle <strong>Show archived</strong> to browse.</td></tr>
+<tr><td><strong>Unarchive</strong></td><td>Restore an archived Project/subtree. In-flight priors come back as Backlog (or Shaping), not Claimed/Running.</td></tr>
+<tr><td><strong>Escalate</strong></td><td>What an agent does instead of guessing: writes a question with options and stops.</td></tr>
+<tr><td><strong>Split</strong></td><td>What an agent does when its card is bigger than one card. Proposes siblings, same as Approve.</td></tr>
+</tbody>
+</table>
+</div>
+<p>Prefer <strong>park</strong> over <strong>halt</strong> when you want the same conversation to continue,
+and <strong>steer</strong> over both when the note can wait.</p>
+<h2 id="roles"><a class="header" href="#roles">Roles</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Term</th><th>Meaning</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Operator</strong></td><td>You, plus any chat agent you drive sandboard from. Reaches sandboard over MCP at <code>/mcp</code> with operator tools only.</td></tr>
+<tr><td><strong>Worker</strong></td><td>The agent inside a sandbox working a card. Has <strong>no</strong> network path to sandboard.</td></tr>
+<tr><td><strong>Supervisor</strong></td><td>The part of sandboard that dispatches cards, runs sandboxes, and speaks for workers.</td></tr>
+<tr><td><strong>Cockpit</strong></td><td>A durable privileged sandbox you can attach a terminal to, which reaches sandboard’s operator tools. Distinct from the operator MCP surface itself.</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="execution"><a class="header" href="#execution">Execution</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Term</th><th>Meaning</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>OpenShell</strong></td><td>The sandbox gateway sandboard talks to over gRPC. Owns containers, network policy, and provider credentials.</td></tr>
+<tr><td><strong>Policy</strong></td><td>A named OpenShell YAML allow-list (filesystem / network) on the board. Edited in Settings → OpenShell → Policies. Applied at sandbox create and fixed for that sandbox’s life.</td></tr>
+<tr><td><strong>Sandbox spec</strong></td><td>The named recipe for a sandbox: image, CPU, memory, engine, optional model / env / prompt, attached providers, and a reference to a Policy by id. Managed in Settings → OpenShell → Sandbox specs. Spec <code>env</code> is non-secret (overlaid after <code>agent_env</code> at create; profile wins on clash); secrets belong on Providers.</td></tr>
+<tr><td><strong>Engine</strong></td><td>Which agent CLI runs in the sandbox: <code>cursor</code>, <code>claude</code>, <code>opencode</code>, <code>agy</code>, or <code>hermes</code>.</td></tr>
+<tr><td><strong>Provider</strong></td><td>A credential OpenShell holds and injects only where its endpoint/profile allows — for example <code>OPENROUTER_API_KEY</code> for Hermes or <code>GH_TOKEN</code> for GitHub. Secrets are not baked into images or persisted in sandbox workspaces.</td></tr>
+<tr><td><strong>Briefing</strong></td><td>What the supervisor assembles at claim time: Plan, hardwired protocol, board standing prompt, optional <code>project_prompt</code>, optional sandbox-spec <code>prompt</code> as <strong>Sandbox prompt (seat notes):</strong> (cold / Cockpit only — omitted on resume), then card intent/DoD/notes and remotes. Points at standing text and DoD for quality gates — does not invent them.</td></tr>
+<tr><td><strong>Lease</strong></td><td>The claim an agent holds on a card. Expires if output stops, so another run can take the card.</td></tr>
+<tr><td><strong>Compute driver</strong></td><td>Whatever provides the Docker-compatible API OpenShell needs: podman, Colima, Docker. Your choice, outside sandboard.</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="protocol-files"><a class="header" href="#protocol-files">Protocol files</a></h2>
+<p>An agent has no API to sandboard, so it finishes by writing a file into its sandbox.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>File</th><th>Means</th></tr>
+</thead>
+<tbody>
+<tr><td><code>plan.json</code></td><td>Here is the proposed breakdown.</td></tr>
+<tr><td><code>report.json</code></td><td>I am done; here is the PR and the diffstat.</td></tr>
+<tr><td><code>escalate.json</code></td><td>I need a decision; here is the question and the options.</td></tr>
+<tr><td><code>split.json</code></td><td>This card is too big; here are the siblings it should become.</td></tr>
+</tbody>
+</table>
+</div>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="quickstart"><a class="header" href="#quickstart">Quickstart</a></h1>
+<p>Get Sandboard running locally, then connect OpenShell before dispatching agent
+work. The board can start without a gateway or credentials, but it cannot run an
+agent until you configure them.</p>
+<p>When you are ready for sandboxed runs, use the empty-board <strong>Welcome</strong> guide
+(or <strong>Help</strong>) — OpenShell + sandbox before the Project loop — then the checklist
+on <a href="#your-first-agent">Your first agent</a>.</p>
+<p><strong>You need:</strong> a current Rust stable toolchain, and a recent Node.js if you want
+to build the UI.</p>
+<h2 id="1-run-it"><a class="header" href="#1-run-it">1. Run it</a></h2>
+<pre><code class="language-bash">git clone https://github.com/sandboard-app/sandboard.git
+cd sandboard
+cargo run
+</code></pre>
+<p>That serves the API, SSE, MCP, and the built UI. Bind port defaults to <code>8080</code>
+(<code>SANDBOARD_PORT</code> overrides). Open the board at whatever Host you use — UI copy and
+OAuth redirect URIs come from that origin, not a hardcoded loopback URL.</p>
+<p>If <code>web/dist</code> does not exist yet, build the UI once:</p>
+<pre><code class="language-bash">npm --prefix web install &amp;&amp; npm --prefix web run build
+</code></pre>
+<h2 id="2-create-your-admin"><a class="header" href="#2-create-your-admin">2. Create your admin</a></h2>
+<p>The first time you open the board it asks you to create an admin account. Until
+you do, the API refuses everything — there is no anonymous mode.</p>
+<p>Pick any username and password; it is stored locally, in your board database.</p>
+<h2 id="3-make-something"><a class="header" href="#3-make-something">3. Make something</a></h2>
+<p>The board starts empty. Create a <strong>Project</strong>, give it an intent, and point it at
+a repository (<code>owner/name</code> — the repo the planning agent will clone).</p>
+<p>sandboard creates an <strong>Initial plan</strong> Task under it automatically. You now have a
+Project, a Task, and a board that looks like the one in the <a href="#tour">Tour</a> —
+minus anything running, because nothing has been dispatched yet.</p>
+<p>Click into the card. The detail drawer shows <strong>why this exists</strong> (the chain up
+to its Project), its definition of done, and the Proposed Tasks section that an
+agent would fill in.</p>
+<p>Move it around. Nothing will claim it, nothing will spend money, and you cannot
+break anything that a restart does not fix.</p>
+<p>Once the Project has cards, <strong>Create Task</strong> on the swimlane or Detail drawer
+(or MCP <code>create_task</code>) adds another Backlog card under that Project without
+re-running Initial plan. Name the clone target in intent/DoD. See
+<a href="#adding-tasks-to-an-existing-project">Workflow</a>.</p>
+<h2 id="4-connect-a-chat-client-optional"><a class="header" href="#4-connect-a-chat-client-optional">4. Connect a chat client (optional)</a></h2>
+<p>You can drive the board from Cursor or Claude Code over MCP instead of the UI.
+sandboard must already be listening.</p>
+<p>For an agent bringing up a <strong>fresh</strong> board (admin, OpenShell, providers, sandbox
+spec, first Project), point it at the public bootstrap guide first:</p>
+<pre><code class="language-bash">curl -sS "$SANDBOARD_URL/llms.txt"   # SANDBOARD_URL = the origin you open the board on
+</code></pre>
+<p><code>GET /llms.txt</code> needs no auth. Source lives at <a href="../llms.txt"><code>llms.txt</code></a> in the
+repo; Vite’s <code>:5173</code> proxy forwards the same path in <code>make dev-ui</code>.</p>
+<p><code>/mcp</code> is for operators: create Projects, triage, dispatch, park, steer,
+approve. Worker verbs (<code>claim</code>, <code>heartbeat</code>, <code>report</code>, …) stay with the
+supervisor. The Help / Board empty guide shows <code>{origin}/mcp</code> from
+<code>window.location</code>.</p>
+<p><strong>Cursor</strong> — point <code>.cursor/mcp.json</code> at your board origin:</p>
+<pre><code class="language-json">{
+  "mcpServers": {
+    "sandboard": {
+      "type": "http",
+      "url": "http://YOUR_HOST:PORT/mcp",
+      "auth": { "CLIENT_ID": "sandboard-cursor", "scopes": ["mcp"] }
+    }
+  }
+}
+</code></pre>
+<pre><code class="language-bash">agent mcp login sandboard
+</code></pre>
+<p><strong>Claude Code:</strong></p>
+<pre><code class="language-bash">claude mcp add --transport http sandboard "$SANDBOARD_URL/mcp"
+</code></pre>
+<p>Either way a browser opens for login and consent, using the same account you
+just created. Tokens survive a sandboard restart, so you will not be logging in
+repeatedly.</p>
+<p>If the tools list stays empty, reload the client.</p>
+<h2 id="developing-on-it"><a class="header" href="#developing-on-it">Developing on it</a></h2>
+<pre><code class="language-bash">make dev                  # watchexec rebuilds and restarts on Rust changes
+make dev-ui               # Vite on :5173, proxying to :8080
+</code></pre>
+<p><code>make dev</code> needs <a href="https://crates.io/crates/watchexec-cli"><code>watchexec</code></a>
+(<code>brew install watchexec</code> or <code>cargo install watchexec-cli</code>).</p>
+<h2 id="next-1"><a class="header" href="#next-1">Next</a></h2>
+<ul>
+<li><strong><a href="#your-first-agent">Your first agent</a></strong> — Welcome/Help OpenShell onboarding, then one sandboxed run</li>
+<li><a href="#workflow">Workflow</a> — the day-to-day loop</li>
+<li><a href="#configuration">Configuration</a> — database URL, environment, Settings</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="your-first-agent"><a class="header" href="#your-first-agent">Your first agent</a></h1>
+<p>The shortest path from an empty board to one real sandboxed run that opens a
+pull request.</p>
+<blockquote>
+<p><strong>This spends real money and opens pull requests.</strong> Do this once on a repo
+you do not mind receiving a small PR against.</p>
+</blockquote>
+<h2 id="start-in-the-product"><a class="header" href="#start-in-the-product">Start in the product</a></h2>
+<p>On an empty board, <strong>Welcome to sandboard</strong> embeds the same operator guide as
+<strong>Help</strong> (nav → Help). That guide is the named first-run path:</p>
+<ol>
+<li><strong>Connect MCP</strong></li>
+<li><strong>OpenShell + sandbox</strong> — Connectivity, Providers, Policies, Sandbox specs</li>
+<li><strong>First Project loop</strong></li>
+</ol>
+<p>Work the checklist there; deep links land on Settings → OpenShell and Agent
+runtime. This page is the prose companion: the same order, with checks and the
+host-side pieces the UI does not run for you. An operator agent should start from
+the public <a href="../llms.txt"><code>/llms.txt</code></a> guide (same order, API-shaped checks).</p>
+<p>Every step has a check. Do not move on until the check passes — see
+<a href="#everything-fails-as-a-hang">why</a> below: in this stack a
+half-finished step does not error, it hangs.</p>
+<h2 id="what-you-are-assembling"><a class="header" href="#what-you-are-assembling">What you are assembling</a></h2>
+<p>Four things have to be true on the host. The tools named are examples, not the
+only stack.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>#</th><th>Role</th><th>Concretely</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>Something that runs containers</td><td>podman, Colima, or Docker</td></tr>
+<tr><td>2</td><td>The OpenShell gateway</td><td>holds sandboxes, network policy, credentials</td></tr>
+<tr><td>3</td><td>Model + GitHub credentials</td><td>as OpenShell <em>providers</em>, never baked into an image</td></tr>
+<tr><td>4</td><td>A sandbox image</td><td>with whatever toolchain the work needs</td></tr>
+</tbody>
+</table>
+</div>
+<p>sandboard itself holds none of those credentials. It talks to the gateway over gRPC
+and the gateway injects secrets on egress, so nothing sensitive enters the
+sandbox.</p>
+<h2 id="1-a-compute-driver"><a class="header" href="#1-a-compute-driver">1. A compute driver</a></h2>
+<p>OpenShell’s gateway needs a working Docker-compatible API. How you provide it is
+your choice:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Driver</th><th>Typical setup</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>podman</strong></td><td><code>podman machine start</code></td></tr>
+<tr><td><strong>Colima</strong></td><td><code>colima start</code>, then point the gateway at <code>unix://$HOME/.colima/default/docker.sock</code></td></tr>
+<tr><td><strong>Docker Desktop / engine</strong></td><td>Make sure the daemon is up and the gateway can reach its socket</td></tr>
+</tbody>
+</table>
+</div>
+<p><code>DOCKER_HOST</code> and friends belong to the <strong>gateway process</strong>, not to sandboard
+Settings.</p>
+<p><strong>Check:</strong></p>
+<pre><code class="language-bash">docker info        # must succeed
+</code></pre>
+<p>The driver can stop on its own — the podman machine especially. sandboard classifies
+that as infrastructure rather than the card failing, so it will not burn a
+card’s retry budget, but it cannot prevent the outage.</p>
+<h2 id="2-the-openshell-gateway"><a class="header" href="#2-the-openshell-gateway">2. The OpenShell gateway</a></h2>
+<p>Start it however your install expects (Homebrew service, systemd, …). sandboard does
+not spawn an <code>openshell</code> CLI for board traffic: <code>src/openshell.rs</code> talks to the
+gateway in-process over gRPC with client certificates.</p>
+<p><strong>Check:</strong></p>
+<pre><code class="language-bash">openshell status   # expect Connected + Authenticated
+</code></pre>
+<p>Then tell sandboard how to reach it, in <strong>Settings → OpenShell → Connectivity</strong>
+(Welcome/Help deep-links here):</p>
+<ul>
+<li><strong>Gateway endpoint</strong> — often <code>https://127.0.0.1:17670</code> (not sandboard’s <code>8080</code>;
+your install may differ).</li>
+<li><strong>mTLS PEMs</strong> — CA, client cert, client key. Paste them in. They are stored
+encrypted in the board database (<code>~/.config/sandboard/master.key</code>). The API does
+not return private keys. sandboard does not read them from disk — upload them in
+Settings.</li>
+</ul>
+<p><strong>Settings</strong> (stored on the board) is the live source of truth for gateway
+endpoint and sealed PEMs — same split as <a href="#configuration">Configuration</a>.</p>
+<p><strong>Check:</strong> hit <strong>Refresh status</strong> in Settings. You want <strong>Healthy</strong>.</p>
+<h2 id="3-providers"><a class="header" href="#3-providers">3. Providers</a></h2>
+<p><strong>Settings → OpenShell → Providers</strong> is the credential list on the board.
+<strong>Sync</strong> applies it to the gateway. Which providers attach on create is chosen
+per Sandbox spec.</p>
+<p>For <strong><code>claude</code></strong> sandboxes, point OpenShell’s local router at your model. OpenCode
+can use the same route when its model is unset, or a direct provider such as
+OpenRouter when its Sandbox spec has a <code>provider/model</code> value. Hermes uses its
+own endpoint-bearing OpenShell provider so it can use OpenRouter without
+changing the shared inference route:</p>
+<pre><code class="language-bash">openshell provider create --name vertex --type google-vertex-ai --from-gcloud-adc \
+  --config VERTEX_AI_PROJECT_ID=&lt;project&gt; --config VERTEX_AI_REGION=global
+openshell inference set --provider vertex --model claude-sonnet-4-6@default
+</code></pre>
+<p>Those agents then reach models at <code>https://inference.local</code> and the gateway
+swaps in the real credential on the way out. For Hermes, create an
+<code>openrouter</code> provider with <code>OPENROUTER_API_KEY</code> and attach it to the
+<code>sandbox-hermes</code> profile. Details:
+<a href="#how-credentials-reach-the-agent">Sandbox</a>.</p>
+<p>For <strong><code>agy</code></strong>, <strong><code>cursor</code></strong>, <strong><code>opencode</code></strong>, and <strong><code>hermes</code></strong>, model selection is on
+the Sandbox spec (or per card at claim); sandboard passes the resolved value as
+<code>agy --model …</code>, <code>agent --model …</code>, <code>opencode --model provider/model</code>, or
+<code>hermes --model …</code>. See
+<a href="#model">Configuration</a> and <a href="#model-selection">Sandbox</a>.</p>
+<p>For GitHub, add or edit the shipped <strong><code>github-app</code></strong> provider under
+<strong>Settings → OpenShell → Providers</strong> (type profile under <strong>Provider types</strong>,
+same catalog as <code>cursor-agent</code> / <code>antigravity</code>). Set App ID, private key, and
+installation; Save/Sync mints <code>GH_TOKEN</code> onto the gateway — attach that
+provider on your Sandbox spec.</p>
+<p><strong>Check:</strong> Sync reports success and the providers you expect are listed on the
+gateway.</p>
+<h2 id="4-policies-and-a-sandbox-image"><a class="header" href="#4-policies-and-a-sandbox-image">4. Policies and a sandbox image</a></h2>
+<p>OpenShell allow-lists are named <strong>Policies</strong> on the board
+(<strong>Settings → OpenShell → Policies</strong>). A Sandbox spec picks one by id — image,
+resources, engine, and providers live on the spec; YAML lives on the Policy.
+<a href="#policies">Configuration</a> covers the split; a running sandbox
+keeps the policy it was created with.</p>
+<p>A fresh board already has five seeded specs — <code>sandbox-cursor</code>,
+<code>sandbox-agy</code>, <code>sandbox-claude</code>, <code>sandbox-opencode</code>, <code>sandbox-hermes</code> — each pointed at
+<code>quay.io/sandboard-app/sandbox-&lt;engine&gt;:latest</code> and a matching minimal Cockpit
+policy. None of them is the default yet — pick one (Welcome flags this until
+you do). Build and push those images yourself (or point the seeded specs at
+wherever you host them):</p>
+<pre><code class="language-bash">make sandbox        # builds all five quay.io/sandboard-app/sandbox-&lt;engine&gt;:latest
+make sandbox-push   # builds, then pushes all five
+# Docker: CONTAINER_ENGINE=docker make sandbox
+# Different registry: REGISTRY=ghcr.io/you make sandbox
+</code></pre>
+<p>From the <strong>repo root</strong>, not <code>sandbox/</code> — the Containerfile is multi-stage and
+<code>podman build -f sandbox/Containerfile</code> resolves relative to wherever you run
+it. Each image bakes a Rust toolchain but no sandboard source or dependency cache;
+a card’s own <code>cargo build</code>/<code>npm ci</code> fetch crates.io/npm live, so the seeded
+Cockpit policies allow that egress (<code>src/seed_policies.rs</code>).</p>
+<p>Then set the board’s <strong>default</strong> sandbox spec in
+<strong>Settings → OpenShell → Sandbox specs</strong> (Welcome/Help deep-links here) —
+either one of the five seeded rows or one you made. Nothing is default until
+you choose; the Welcome “Sandbox spec” readiness check stays red until then.
+Optionally set <strong>Model</strong> on the spec when using <code>agy</code>, <code>cursor</code>, <code>opencode</code>, or
+<code>hermes</code> (or override per card at claim); <code>claude</code> model routing stays on the
+gateway via <code>openshell inference set</code> as above. Specs live on the board;
+<a href="#sandbox-specs">Configuration</a> and <a href="#sandbox">Sandbox</a> cover
+resolution.</p>
+<p><strong>Check:</strong> <code>podman image ls | grep sandbox-</code>, and Welcome’s “Sandbox spec”
+readiness check turns green.</p>
+<h2 id="5-agent-runtime-optional-tune"><a class="header" href="#5-agent-runtime-optional-tune">5. Agent runtime (optional tune)</a></h2>
+<p>Tune concurrency / timeouts / sweep under <strong>Settings → Agent runtime</strong> if you
+want (<a href="#configuration">Configuration</a>).</p>
+<p><strong>Check:</strong> OpenShell readiness on Welcome shows Gateway/mTLS and Sandbox spec
+ready.</p>
+<h2 id="6-run-one-card"><a class="header" href="#6-run-one-card">6. Run one card</a></h2>
+<p>This is the <strong>First Project loop</strong> section of Welcome/Help:</p>
+<ol>
+<li>Create a Project pointed at your repo (<code>clone_repo</code> as <code>owner/name</code>).</li>
+<li><strong>Start</strong> its Initial plan card.</li>
+<li>Watch it move Backlog → Running. The card shows its sandbox name.</li>
+<li>It lands in <strong>Review</strong> with a proposed breakdown. Read it, edit it, Approve.</li>
+<li><strong>Start</strong> one of the resulting Tasks.</li>
+<li>It opens a pull request and lands in Review.</li>
+<li>Merge on GitHub. The card moves to Done.</li>
+</ol>
+<p>Keep <code>max_concurrent</code> at 1 until you have watched this work end to end.</p>
+<p>If something takes longer than it should, it has already failed —
+<a href="#everything-fails-as-a-hang">Troubleshooting</a> is the next
+page you want. Denied egress, missing credentials, and wedged relays present as
+silence; treat hangs as failure, not as “give it more time.”</p>
+<h2 id="next-2"><a class="header" href="#next-2">Next</a></h2>
+<ul>
+<li><a href="#workflow">Workflow</a> — steering cards day to day</li>
+<li><a href="#configuration">Configuration</a> — Policies, sandbox specs, engines, timeouts</li>
+<li><a href="#sandbox">Sandbox</a> — what actually happens inside a run</li>
+<li><a href="#cockpit">Cockpit</a> — a durable terminal with operator reach</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="workflow"><a class="header" href="#workflow">Workflow</a></h1>
+<p>Day-to-day operation once the board is up. To enable sandboxed agents first, use
+the empty-board <strong>Welcome</strong> or <strong>Help</strong> OpenShell + sandbox guide, then
+<a href="#your-first-agent">Your first agent</a>.</p>
+<h2 id="the-happy-path"><a class="header" href="#the-happy-path">The happy path</a></h2>
+<ol>
+<li><strong>Create a Project</strong> with a <code>clone_repo</code> (<code>owner/name</code>). That repo is what
+the planning agent clones. sandboard creates an <strong>Initial plan</strong> Task that already
+names that repo.</li>
+<li><strong>Start</strong> the Initial plan. The agent clones, reads, and writes <code>plan.json</code>
+proposing sibling Tasks. The card lands in <strong>Review</strong>.</li>
+<li><strong>Approve</strong> it. The proposal becomes real Tasks under the Project. Approving
+does not auto-start them unless the Project’s auto mode is already on.</li>
+<li><strong>Start</strong> each Task (or turn auto mode on).</li>
+<li>The worker clones, works, and opens a PR. The card lands in <strong>Review</strong>.</li>
+<li><strong>You merge on GitHub.</strong> A webhook (or Forge polling) moves the card to Done.</li>
+</ol>
+<p>Read the whole plan before approving. One good card can still be the wrong plan.</p>
+<p><code>propose_breakdown</code> is for manually replanning a Project. A card that turns out
+too big uses the same path in reverse: the agent writes <code>split.json</code>, the card
+goes to Review with a proposal, and Approve creates the siblings.</p>
+<h2 id="adding-tasks-to-an-existing-project"><a class="header" href="#adding-tasks-to-an-existing-project">Adding Tasks to an existing Project</a></h2>
+<p>After a Project exists, you can add more Backlog Tasks without re-running
+Initial plan:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Surface</th><th>How</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Board UI</strong></td><td><strong>Create Task</strong> on the Project swimlane (when the lane is open) or in the Project Detail drawer. Title, intent, definition of done; optional blockers from sibling Tasks. Not on the empty-board Welcome path.</td></tr>
+<tr><td><strong>MCP</strong></td><td>Operator tool <code>create_task</code> — parent Project id, title, intent, <code>definition_of_done</code>, optional <code>blocked_by</code>. Same Board path as <code>POST /api/items</code> with <code>parent</code>.</td></tr>
+</tbody>
+</table>
+</div>
+<p>The new card lands in <strong>Backlog</strong>, ready for <strong>Start</strong> / <code>dispatch</code> (or Project
+auto mode). Parent must be a Project — nesting under a Task is refused.</p>
+<p>Each Task must name its clone target (<code>owner/name</code>) in intent and/or definition
+of done. When the caller omits an explicit <code>Clone repository:</code> line, sandboard stamps
+the Project default from Project intent when one is present; otherwise Remotes
+escalate rather than guessing.</p>
+<p><strong>Approve</strong> still only materializes proposals (Initial plan or <code>split.json</code>) and
+never merges. Creating a Task ad-hoc is not Approve — it is a separate human
+create path.</p>
+<h2 id="which-repo-an-agent-clones"><a class="header" href="#which-repo-an-agent-clones">Which repo an agent clones</a></h2>
+<p>Agents clone the repository named in the card’s <strong>intent</strong>, <strong>definition of
+done</strong>, or <strong>notes</strong>. The supervisor never clones — the agent does.</p>
+<p><strong>Cold start</strong> (brand-new sandbox): the supervisor clears <code>/sandbox/repo</code> and
+the agent clones into that empty workdir.</p>
+<p><strong>Reclaim</strong> (live sandbox kept on the card): park resume and Needs You answer
+share one reuse path. The supervisor does not wipe <code>/sandbox/repo</code>; it refreshes
+an existing checkout in place, or ensures the directory without clearing caches
+when no checkout is present. The agent clones only if the workdir still has no
+repo.</p>
+<p>That is why <code>clone_repo</code> is required when you create a Project: it lands in the
+Project intent and the Initial plan, so the first agent does not invent a name.
+Proposed Tasks should each name their clone target the same way.</p>
+<p>Resolution at claim time is short:</p>
+<pre><code class="language-text">card.pull_request (base/head, once a PR exists)
+  → else: clone from the card's prose
+  → else: escalate
+</code></pre>
+<p>An unbound card escalates rather than guessing an <code>owner/name</code>. Once
+<code>report.json</code> sets <code>pull_request</code>, that becomes the durable handle every later
+claim uses for resume, rebase, and request-changes.</p>
+<h2 id="standing-instructions-and-quality-gates"><a class="header" href="#standing-instructions-and-quality-gates">Standing instructions and quality gates</a></h2>
+<p>sandboard stacks configuration in layers (<a href="#configuration">Configuration</a>):</p>
+<ol>
+<li><strong>Process boot</strong> — database URL, compile-time hierarchy.</li>
+<li><strong>Board Settings</strong> — Policies, sandbox specs, agent runtime (standing prompt), Forge/providers.</li>
+<li><strong>Project fields</strong> — <code>clone_repo</code>, optional sandbox override.</li>
+<li><strong><code>project_prompt</code></strong> — optional Project-only standing extras.</li>
+<li><strong>Per-card intent / DoD</strong> — clone target and card-specific work.</li>
+</ol>
+<p>Boot, Settings, and Project fields are operator setup — they do not belong in
+standing prompts. Cold briefings stack hardwired protocol, then the board
+standing prompt (Settings → Agent runtime), then optional <code>project_prompt</code>,
+then card prose.</p>
+<p>Put board-wide rules in the standing prompt when you want them: escalation,
+house style, and shared quality gates. Use <code>project_prompt</code> only when one
+Project needs extras. Fresh boards leave standing prompt empty.</p>
+<p><strong>Quality gates</strong> — commands agents must run before publish — go in the board
+standing prompt when they apply everywhere, or in <code>project_prompt</code> / card DoD
+when narrower. Name the commands explicitly. sandboard does <strong>not</strong> assume <code>cargo</code>
+unless those instructions name it.</p>
+<h2 id="triage-order"><a class="header" href="#triage-order">Triage order</a></h2>
+<ol>
+<li><strong>Needs You</strong> — an agent is stopped and waiting. Resolve these first.</li>
+<li><strong>Review</strong> — finished work. Sort by size and risk, not arrival time.</li>
+<li>Everything else waits for a digest (<code>board_snapshot</code> / <code>board_digest</code>).</li>
+</ol>
+<p>If you are driving sandboard through a chat agent, interrupt the human for three
+things only: irreversible actions, an ambiguity blocking several items, and
+repeated failure on the same card. Otherwise summarise and let them walk away.</p>
+<h2 id="dispatch-and-auto-mode"><a class="header" href="#dispatch-and-auto-mode">Dispatch and auto mode</a></h2>
+<p>By default the operator decides what starts. A Backlog card is inert until
+someone calls <code>dispatch</code> (<strong>Start</strong> in the UI), which sets <code>awaiting_dispatch</code>.</p>
+<p><strong>Project auto mode</strong> — the swimlane play/pause, or <code>set_auto_dispatch</code> — is the
+exception. With it on, each supervisor tick queues every claimable Backlog leaf
+under that Project. Pause clears <code>awaiting_dispatch</code> on cards still in Backlog
+but does <strong>not</strong> halt Claimed or Running agents. Auto mode never approves a
+Review, answers a Needs You, or unparks anything.</p>
+<p>The supervisor takes the oldest claimable Backlog card with <code>awaiting_dispatch</code>
+that is not already running, subject to concurrency and gateway health.</p>
+<p>Lease expiry, park, halt, release, and request_changes all clear
+<code>awaiting_dispatch</code>. With auto off, dispatch again; with auto on, the next tick
+re-queues it. Unpark clears the hold and queues the supervisor, same as Start.</p>
+<h2 id="steering-a-card"><a class="header" href="#steering-a-card">Steering a card</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>You want to</th><th>Do this</th></tr>
+</thead>
+<tbody>
+<tr><td>Send a reviewed card back with instructions</td><td><strong>Request changes</strong> — the note reaches the next run’s briefing. Does not auto-start; dispatch again.</td></tr>
+<tr><td>Answer a blocked agent</td><td><strong>Needs You</strong> — pick an option.</td></tr>
+<tr><td>Stop a wedged run but keep its context</td><td><strong>Park</strong> — stops the agent, keeps sandbox and conversation, holds until Resume.</td></tr>
+<tr><td>Resume a parked card</td><td><strong>Unpark</strong> — clears the hold; the next claim can resume the conversation.</td></tr>
+<tr><td>Throw the run away</td><td><strong>Halt</strong> — stops the agent, clears the conversation id, deletes the sandbox. Next dispatch starts clean.</td></tr>
+<tr><td>Leave a note for later</td><td><strong>Steer</strong> — stored, seen on the next claim. Does not inject mid-turn.</td></tr>
+<tr><td>Auto-start claimable Backlog under a Project</td><td>Swimlane <strong>Auto</strong> play/pause.</td></tr>
+</tbody>
+</table>
+</div>
+<p>Prefer <strong>park</strong> over <strong>halt</strong> when the agent is stuck and you want the same
+conversation to continue. Prefer <strong>steer</strong> when the note can wait.</p>
+<h2 id="pr-review-feedback"><a class="header" href="#pr-review-feedback">PR review feedback</a></h2>
+<p>When GitHub submits a PR review with state <code>CHANGES_REQUESTED</code> or <code>COMMENT</code>,
+sandboard treats it like human <strong>Request changes</strong>: pointer steer note, clear any
+proposal, move the matching card to Backlog. Same path for both review states —
+no auto-dispatch.</p>
+<p>The steer note only points at the PR (url / number). It tells the next agent
+there is review feedback and to inspect it with <code>gh</code> (e.g. <code>gh pr view</code> /
+reviews). It does not summarize or paste the review body; the agent figures out
+the rest from the review itself.</p>
+<p>Matching uses the card’s <code>pr_url</code> the same way merge completion does. Applies
+in Review, Needs You, and live Claimed/Running. Duplicate deliveries are safe
+(already-Backlog cards are not matched again).</p>
+<p>Ingress is the same webhook endpoint: <code>x-github-event=pull_request_review</code> with
+<code>action=submitted</code>. Forge polling (when enabled) watches open PRs for newly
+submitted reviews and calls the same Board helper — first observation only seeds
+a per-PR cursor so historical reviews do not bounce the card.</p>
+<p>GitHub <code>APPROVED</code> and dismissed reviews are board no-ops. Approving a PR on
+GitHub does <strong>not</strong> Approve the card in sandboard, and it does not merge. Approve and
+merge stay human.</p>
+<h2 id="when-main-moves"><a class="header" href="#when-main-moves">When main moves</a></h2>
+<p>Ingress is <code>POST /api/webhooks/github</code>. A push to the default branch emits
+<code>MainAdvanced</code>, which does three things:</p>
+<p><strong>1. Merged card → Done.</strong> When a Review or Needs You card’s <code>pr_url</code> matches
+the merged PR, it completes. Webhook and polling both go through the same Board
+completion helper.</p>
+<p><strong>2. Review catch-up (scoped, CONFLICTING-only).</strong> Main advancing under a Review PR
+is a no-op unless GitHub reports a conflict. sandboard observes the host GitHub API
+<code>mergeable</code> field with an App installation token — not a <code>git rebase</code> in a
+sandbox — for open Review PRs on the <strong>same upstream</strong> that advanced (tip
+advance and same-parent sibling merge share this path):</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th><code>mergeable</code></th><th>What happens</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>MERGEABLE</strong></td><td>Silent no-op. Card stays in Review; no catch-up work signal.</td></tr>
+<tr><td><strong>UNKNOWN</strong></td><td>GitHub is still computing. Retry on the next sweep.</td></tr>
+<tr><td><strong>CONFLICTING</strong></td><td>Bounce to Backlog with a binding note so a worker can reclaim and rebase.</td></tr>
+</tbody>
+</table>
+</div>
+<p>Repeated overlapping conflict files escalate to <strong>Needs You</strong> (decomposition
+failure) when those file lists are present.</p>
+<p><strong>3. Live runs (repo-scoped steer + coalesced bounce).</strong> Claimed and Running
+cards on the <strong>same upstream</strong> that advanced get a binding steer note, a goal
+story line, and a park+unpark so the next claim carries rebase instructions.
+Steer alone does not inject mid-turn — the first interrupt on a Running card
+still happens via park+unpark. Cards on other upstreams stay Running; unbound
+live cards (no <code>pull_request</code> yet) steer only when the advanced repo matches
+the board default <code>execution.agents.repo.upstream</code>.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Situation</th><th>What happens</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Same upstream, first MainAdvanced while Running</strong></td><td>Steer note + goal story; park+unpark; card lands in Backlog with <code>awaiting_dispatch</code> (sandbox <code>environment</code> and <code>conversation_id</code> preserved).</td></tr>
+<tr><td><strong>Same upstream, repeat MainAdvanced while already <code>awaiting_dispatch</code> from a prior steer</strong></td><td>Coalesce: no second park/unpark. Steer note and story refresh only when the commit sha changes.</td></tr>
+<tr><td><strong>Different upstream</strong></td><td>No steer, no bounce — card stays Running.</td></tr>
+</tbody>
+</table>
+</div>
+<p>The goal story names the advanced ref/sha and that the live run was interrupted
+for rebase (distinct from manual park). The Detail drawer and SSE upserts show
+the steer note and story without a full page reload.</p>
+<p>Webhook and poll responses list <code>steered_item_ids</code> for live-steered cards and
+for Review cards bounced to Backlog on CONFLICTING (deduped). Live steering
+does not replace Review catch-up: both fire on the same <code>MainAdvanced</code>, scoped
+to the advancing <code>owner/name</code>.</p>
+<h3 id="local-webhook-forwarding"><a class="header" href="#local-webhook-forwarding">Local webhook forwarding</a></h3>
+<pre><code class="language-bash">gh extension install cli/gh-webhook   # once
+
+gh webhook forward \
+  --repo=&lt;owner/name&gt; \
+  --events=pull_request,pull_request_review,push \
+  --url="$SANDBOARD_URL/api/webhooks/github"
+</code></pre>
+<p><code>pull_request</code> and <code>push</code> cover merge → Done and main-advanced;
+<code>pull_request_review</code> covers submitted review feedback → steer (see
+<a href="#pr-review-feedback">PR review feedback</a>). One forwarder per repo at a time.
+For a polling fallback instead, see
+<a href="#openshell--forge--github-app-provider">Configuration</a>.</p>
+<h2 id="archive-and-unarchive"><a class="header" href="#archive-and-unarchive">Archive and Unarchive</a></h2>
+<p><strong>Archive</strong> hides a Project (and its cards) from the active board. Nothing is
+deleted — toggle <strong>Show archived</strong> to browse them.</p>
+<p><strong>Unarchive</strong> restores the Project so it rejoins the active board. Prior states
+that were Claimed/Running (or other in-flight) come back as Backlog, not as live
+work. Confirm-gated on the board and in the Detail drawer, same pattern as
+Archive.</p>
+<h2 id="next-3"><a class="header" href="#next-3">Next</a></h2>
+<ul>
+<li><a href="#troubleshooting">Troubleshooting</a> — when a card stops moving</li>
+<li><a href="#cockpit">Cockpit</a> — a durable terminal with operator reach</li>
+<li><a href="#configuration">Configuration</a> — timeouts, concurrency, Policies, sandbox specs</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="cockpit"><a class="header" href="#cockpit">Cockpit</a></h1>
+<p>A durable terminal inside a sandbox that can reach sandboard’s operator tools. Use
+it when you want an agent that can triage the board with you, rather than one
+working a card.</p>
+<p>It is the third role in <a href="#operator-and-worker">Concepts</a>: narrower
+than you (no merges), wider than a card worker (which cannot see the board).</p>
+<p><strong>Prerequisites:</strong> <a href="#your-first-agent">Your first agent</a> setup is live — a healthy
+OpenShell gateway and a cockpit sandbox spec in the catalog.</p>
+<h2 id="start-one"><a class="header" href="#start-one">Start one</a></h2>
+<p>In the UI:</p>
+<ol>
+<li>Open <strong>Cockpit</strong> from the centred chevron grip in the top bar.</li>
+<li>Click <strong>Start</strong>.</li>
+<li>Wait a few seconds for the supervisor to provision the sandbox.</li>
+<li>Type in the terminal.</li>
+</ol>
+<p>That is the whole path. Everything below is for automating it or understanding
+what it did.</p>
+<p>Disconnecting the terminal does <strong>not</strong> stop the session — the sandbox and the
+conversation stay up under Start/Stop, and re-attaching resumes the same chat.
+Restarting sandboard does not stop it either: the supervisor reconciles, and you just
+open Cockpit again.</p>
+<h2 id="what-is-actually-durable"><a class="header" href="#what-is-actually-durable">What is actually durable</a></h2>
+<p>The session is a singleton record on the Board, not a file or a wrapper script:</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Meaning</th></tr>
+</thead>
+<tbody>
+<tr><td><code>environment</code></td><td>Sandbox name — defaults to <code>sandboard-cockpit</code></td></tr>
+<tr><td><code>conversation_id</code></td><td>Chat id the session resumes; minted if missing</td></tr>
+<tr><td><code>status</code></td><td><code>Running</code>, or <code>Parked</code> — a hold that keeps sandbox and conversation</td></tr>
+</tbody>
+</table>
+</div>
+<p>The terminal and any CLI attach are <strong>faces over that record</strong>. They read and
+mutate it through <code>Board</code>; they do not own lifecycle. Create sandboxes through
+Board APIs so inventory reconcile stays consistent.</p>
+<p>Which image, CPU, memory, engine, and <strong>Policy</strong> (by id) Cockpit gets comes
+from the <strong>cockpit sandbox spec</strong> (Settings → OpenShell → Sandbox specs). Edit
+allow-list YAML under <strong>Policies</strong>; the spec only references it. Live policy is
+set at create and fixed for that sandbox. The sandbox name stays
+<code>sandboard-cockpit</code> regardless of which spec built it, so you can point
+Cockpit at any spec you like.</p>
+<h2 id="driving-it-from-the-cli"><a class="header" href="#driving-it-from-the-cli">Driving it from the CLI</a></h2>
+<p>Same Board calls the UI makes. Scripts authenticate with HTTP Basic
+(<code>Authorization: Basic base64(admin:password)</code>), not the browser session
+cookie — no login step, no cookie jar to manage.</p>
+<pre><code class="language-bash"># SANDBOARD_URL = the origin you open the board on (Host / window.location.origin)
+# Start (empty body; the supervisor fills in `environment`)
+curl -sS -u admin:"$SANDBOARD_PASSWORD" \
+  -H 'Content-Type: application/json' -d '{}' \
+  "$SANDBOARD_URL/api/cockpit-session"
+</code></pre>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Intent</th><th>Call</th></tr>
+</thead>
+<tbody>
+<tr><td>Start</td><td><code>POST /api/cockpit-session</code></td></tr>
+<tr><td>Inspect</td><td><code>GET /api/cockpit-session</code></td></tr>
+<tr><td>Hold without deleting</td><td><code>POST /api/cockpit-session/park</code></td></tr>
+<tr><td>Continue after a park</td><td><code>POST /api/cockpit-session/resume</code></td></tr>
+<tr><td>Tear down</td><td><code>DELETE /api/cockpit-session</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Attach a host terminal once <code>environment</code> is set:</p>
+<pre><code class="language-bash">ENV=$(curl -sS -u admin:"$SANDBOARD_PASSWORD" \
+  "$SANDBOARD_URL/api/cockpit-session" | jq -r '.session.environment // empty')
+openshell sandbox connect "$ENV"
+</code></pre>
+<p><a href="https://github.com/sandboard-app/sandboard/blob/main/scripts/cockpit.sh"><code>scripts/cockpit.sh</code></a> is a thin shim over exactly these
+calls: <code>start</code> / <code>attach</code> / <code>park</code> / <code>resume</code> / <code>stop</code>.</p>
+<p>Do not <code>openshell sandbox delete</code> the cockpit box while a Board session still
+points at it. Let <code>DELETE /api/cockpit-session</code> drive teardown so inventory
+reconcile stays consistent.</p>
+<h2 id="how-the-browser-terminal-works"><a class="header" href="#how-the-browser-terminal-works">How the browser terminal works</a></h2>
+<p>The in-browser terminal is xterm.js over an authenticated WebSocket at
+<code>/api/cockpit-attach</code>, which opens OpenShell <code>ExecSandboxInteractive</code> into the
+Board-named environment and runs the cockpit spec’s engine. Stdin, stdout, and
+resize are relayed over that socket — no local SSH, because a browser cannot
+complete the OpenSSH ProxyCommand chain that <code>openshell sandbox connect</code> uses.
+(That chain is described in <a href="#how-the-cli-attaches">Architecture</a>.)</p>
+<p>Cursor launches interactive <code>agent</code> with <code>--trust --approve-mcps --sandbox disabled</code> — no <code>--force</code>, so tool calls still prompt for approval. Headless
+Cockpit chat / card runs use the same <code>--approve-mcps</code> (with <code>--force</code> and
+<code>-p</code>); without it, Cursor 2026.08+ leaves <code>mcp.json</code> servers unloaded
+(<code>needs approval</code>) and tools look missing even when the socat relay is up.
+OpenCode, Claude, and agy launch their own TUIs. Hermes launches its classic
+CLI (<code>hermes --cli</code>) in the terminal; the modern TUI is intentionally not part
+of the sandbox image. Hermes card/chat turns use headless
+<code>hermes chat --query-file …</code> instead.</p>
+<h2 id="credentials-inside-the-sandbox"><a class="header" href="#credentials-inside-the-sandbox">Credentials inside the sandbox</a></h2>
+<p>Model auth comes from OpenShell providers. Claude uses <code>inference.local</code>;
+OpenCode and Hermes can use the attached <code>sandboard-openrouter</code> provider for
+direct OpenRouter models; OpenCode also retains the <code>inference.local</code> fallback.
+The provider injects <code>OPENROUTER_API_KEY</code> only into the sandbox process. No host
+secret is copied into the image.</p>
+<p>MCP auth from inside the sandbox works differently from the host. Host Cursor
+uses browser OAuth against <code>/mcp</code>, and that dance does not work cleanly from
+inside a sandbox. So the shipped <code>sandboard</code> MCP entry is <strong>stdio</strong>, not HTTP: no
+login, no Bearer, no OAuth dance to skip.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Path</th><th>Contents</th></tr>
+</thead>
+<tbody>
+<tr><td><code>/sandbox/.sandboard/mcp/mcp.json</code></td><td><code>sandboard</code> → <code>/sandbox/.sandboard/mcp/sandboard-mcp-stdio</code> (retries, then <code>socat</code> → <code>agent.sock</code>)</td></tr>
+<tr><td><code>/sandbox/.sandboard/mcp/claude_mcp.json</code></td><td>same shape; Claude loads it via <code>--mcp-config</code></td></tr>
+<tr><td><code>/sandbox/.gemini/config/mcp_config.json</code></td><td>same, for Antigravity</td></tr>
+<tr><td><code>/sandbox/.config/opencode/opencode.jsonc</code></td><td>OpenCode <code>mcp.sandboard</code>, <code>type: local</code></td></tr>
+<tr><td><code>/sandbox/.sandboard/mcp/hermes_mcp.yaml</code></td><td>Board-rendered <code>mcp_servers</code>; the Hermes wrapper merges it into <code>HERMES_HOME/config.yaml</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Injection happens when the sandbox becomes Ready, on
+<code>POST /api/cockpit-session/mcp-cred</code>, and on terminal attach. Do not run
+<code>agent mcp login</code> inside the sandbox unless you specifically want a separate
+host-style OAuth flow.</p>
+<h3 id="how-the-mcp-relay-works"><a class="header" href="#how-the-mcp-relay-works">How the MCP relay works</a></h3>
+<p>sandboard keeps a board-owned <code>ExecSandboxInteractive</code> relay running <code>socat UNIX-LISTEN:/sandbox/.sandboard/mcp/agent.sock STDIO</code> inside the sandbox — its
+gRPC-piped stdin/stdout are wired straight into the same <code>Operator</code> MCP
+handler that serves the HTTP <code>/mcp</code> endpoint (<code>rmcp::serve_server</code> over the
+pipe). No port, no network policy entry, no Bearer to mint — same path on
+local Docker/Podman and remote Kubernetes, since it never leaves the
+sandbox’s own netns.</p>
+<pre class="mermaid">flowchart TB
+  subgraph sandbox ["Sandbox (sandboard-cockpit)"]
+    agent["Agent MCP client&lt;br/&gt;(reads mcp.json)"]
+    socatClient["socat - UNIX-CONNECT:agent.sock"]
+    sock[["agent.sock"]]
+    socatServer["socat UNIX-LISTEN:agent.sock STDIO"]
+
+    agent &lt;--&gt; socatClient
+    socatClient &lt;--&gt;|"Unix domain socket"| sock
+    sock &lt;--&gt; socatServer
+  end
+
+  subgraph host ["sandboard host process"]
+    grpcClient["exec_interactive_raw()"]
+    pumpLoop["pump_loop()"]
+    duplexPair[["tokio::io::duplex()"]]
+    serveServer["rmcp::serve_server"]
+    operator["Operator"]
+    board["Board"]
+
+    grpcClient &lt;--&gt; pumpLoop
+    pumpLoop &lt;--&gt; duplexPair
+    duplexPair &lt;--&gt;|"newline-delimited&lt;br/&gt;JSON-RPC"| serveServer
+    serveServer &lt;--&gt; operator
+    operator &lt;--&gt; board
+  end
+
+  socatServer &lt;--&gt;|"exec's own stdin/stdout&lt;br/&gt;= gRPC stream"| grpcClient
+</pre>
+
+<p>The one-shot listen means agent disconnect is visible on the socket, not
+just inferred: <code>socat</code> exits, and the board re-spawns for the next connect.
+(Not <code>nc</code> — the sandbox image’s OpenBSD-netcat build accepts the connection
+but never forwards bytes written to its stdin <em>after</em> accept out to the
+socket, which is exactly the <code>serve_server</code>-response direction.) See
+<a href="#sandbox">Sandbox</a>.</p>
+<p>For agy the attached <code>antigravity</code> provider injects only an
+<code>openshell:resolve:…</code> placeholder, and attach writes that into the sandbox’s
+token file — never a host OAuth file. Connect once via Settings → Providers →
+<strong>Log in with Google</strong> so the gateway can refresh access tokens. See
+<a href="#antigravity--agy">Sandbox → Antigravity</a>.</p>
+<h2 id="cockpit-cannot-merge-either"><a class="header" href="#cockpit-cannot-merge-either">Cockpit cannot merge either</a></h2>
+<p>The cockpit agent prepares and surfaces Review and Needs You. Approving a merge
+stays human, same as on the host MCP surface. Prefer escalating an ambiguous
+irreversible over widening what <code>approve_review</code> / <code>approve_plan</code> mean.</p>
+<h2 id="related"><a class="header" href="#related">Related</a></h2>
+<ul>
+<li><a href="#operator-and-worker">Concepts</a> — how the three roles differ</li>
+<li><a href="#default-vs-cockpit">Sandbox</a> — default vs Cockpit specs</li>
+<li><a href="#policies">Configuration</a> — Policies catalog</li>
+<li><a href="#sandbox-specs">Configuration</a> — picking the spec</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="troubleshooting"><a class="header" href="#troubleshooting">Troubleshooting</a></h1>
+<h2 id="everything-fails-as-a-hang"><a class="header" href="#everything-fails-as-a-hang">Everything fails as a hang</a></h2>
+<p><strong>This is the single most useful thing to know about running sandboard.</strong></p>
+<p>A denied egress, a missing credential, a wedged relay, a stopped compute driver
+— none of them produce an error. They produce silence. Nothing in the sandbox
+stack has a reliable failure path that surfaces as a failure.</p>
+<p>So: <strong>if something is taking longer than it should, it has already failed.</strong>
+Do not wait it out. Go look.</p>
+<p>That observation shapes the code as much as the operations. Every exec sandboard
+issues carries a deadline, and a deadline expiring is treated as failure rather
+than as “maybe a bit more time.”</p>
+<h2 id="where-to-look-first"><a class="header" href="#where-to-look-first">Where to look first</a></h2>
+<pre><code class="language-bash">openshell logs &lt;sandbox&gt; -n 60     # grep for DENIED, ALLOWED, ssrf, HTTP:
+openshell sandbox list             # phases; Deleting still shows up here
+journalctl -u sandboard | grep 'openshell exec failed'   # board-side ExecSandbox drops
+</code></pre>
+<p>Failed <code>ExecSandbox</code> / interactive setup paths in <code>src/openshell.rs</code> emit a
+structured <code>openshell exec failed</code> line with <code>gateway_endpoint</code>, <code>sandbox_name</code>,
+<code>sandbox_id</code>, <code>elapsed_ms</code>, and <code>request_id</code> (client-generated <code>x-request-id</code>,
+overwritten by the gateway echo when response headers arrive). Use that
+<code>request_id</code> to align board logs with gateway journalctl around the same h2
+stream.</p>
+<p>The card carries its sandbox name, so you can go from a stuck card to its logs
+directly.</p>
+<p>A <strong>failed card keeps its sandbox</strong> rather than deleting it. <code>openshell logs</code> is
+the tool that answers questions and a deleted sandbox answers none. Sandbox
+Sandbox names are attempt-scoped (<code>sb-card-8-a2</code>), so a retry never collides with the
+one being kept for inspection, and <code>reconcile</code> clears them at next startup.</p>
+<h2 id="common-causes"><a class="header" href="#common-causes">Common causes</a></h2>
+<h3 id="the-compute-driver-stopped"><a class="header" href="#the-compute-driver-stopped">The compute driver stopped</a></h3>
+<p>The podman machine stops on its own. So does Colima, occasionally.</p>
+<pre><code class="language-bash">docker info      # if this fails, nothing below matters
+</code></pre>
+<p>sandboard classifies this as infrastructure, not as the card failing: it
+health-checks before claiming and pauses after an infrastructure failure rather
+than spending a card’s retry budget on an outage it cannot fix.</p>
+<h3 id="egress-was-denied"><a class="header" href="#egress-was-denied">Egress was denied</a></h3>
+<p>The network policy is a literal allow-list, and binary paths in it are matched
+literally too. Git’s real remote helper is <code>/usr/lib/git-core/git-remote-http</code>,
+not <code>git</code>.</p>
+<p>Grep the sandbox log for <code>DENIED</code>. Allow-list YAML lives in the <strong>board
+Policies</strong> catalog (Settings → OpenShell → Policies, or
+<code>/api/openshell/policies</code>). Sandbox specs only reference a policy by id. Edit
+the Policy, then create a new sandbox so the updated YAML is applied at create
+time.</p>
+<h3 id="policy-edits-are-not-taking-effect"><a class="header" href="#policy-edits-are-not-taking-effect">Policy edits are not taking effect</a></h3>
+<p>Two separate traps:</p>
+<ul>
+<li><strong>Policy is immutable on a live sandbox</strong> for the filesystem and process
+sections. Live policy comes from the board and is set at create time —
+recreate the sandbox after a policy change.</li>
+<li><strong>Board Policies are authoritative.</strong> Create-form defaults select the seeded
+minimal policy (<code>src/seed_policies.rs</code>); edit egress under Settings →
+OpenShell → Policies (and keep the spec’s <code>policy_id</code> pointed at the row you
+mean).</li>
+</ul>
+<h3 id="the-model-calls-hang"><a class="header" href="#the-model-calls-hang">The model calls hang</a></h3>
+<p>Do not set <code>CLAUDE_CODE_USE_VERTEX=1</code> in a sandbox. It forces direct Vertex with
+ADC/metadata discovery, which OpenShell blocks — real GCE metadata is
+SSRF-hardened. Use <code>inference.local</code> instead; see <a href="#sandbox">Sandbox</a>.</p>
+<p>Also check the <code>/v1</code> suffix: <code>claude</code> wants <code>https://inference.local</code> and
+appends its own path, while <code>opencode</code> wants
+<code>https://inference.local/v1</code>. Getting this wrong hangs rather than 404s.</p>
+<h3 id="an-environment-variable-the-agent-needs-is-missing"><a class="header" href="#an-environment-variable-the-agent-needs-is-missing">An environment variable the agent needs is missing</a></h3>
+<p><strong>The image’s <code>ENV</code> does not reach <code>openshell sandbox exec</code>.</strong> Baking
+<code>ENV PATH=…</code> into the Containerfile is not enough. Sandboard always passes
+<code>agent_env</code> at create; overlay non-secret seat vars on the sandbox spec’s
+<strong><code>env</code></strong> (Settings → Sandbox specs — profile wins on key clash). Secrets
+belong on Providers, not spec env. See
+<a href="#spec-env-and-prompt">Sandbox</a>.</p>
+<h3 id="an-uploaded-file-landed-in-the-wrong-place"><a class="header" href="#an-uploaded-file-landed-in-the-wrong-place">An uploaded file landed in the wrong place</a></h3>
+<p><strong><code>sandbox upload</code> takes a destination directory</strong>, and the destination must
+already exist. Uploading to <code>/tmp/foo.py</code> creates a <em>directory</em> named
+<code>/tmp/foo.py</code> with the file inside it. Upload to <code>/tmp</code>.</p>
+<h2 id="restarting-sandboard-while-a-card-is-running"><a class="header" href="#restarting-sandboard-while-a-card-is-running">Restarting sandboard while a card is running</a></h2>
+<p>This is safe. The agent runs <strong>detached</strong> inside its sandbox, so it does not
+care that sandboard went away.</p>
+<p>On startup <code>reconcile</code> lists the sandboxes sandboard labelled, matches each against
+its card’s environment, and picks the run back up for any card still Claimed or
+Running. The card stays Running; no second sandbox is created.</p>
+<p>Two cases worth knowing:</p>
+<ul>
+<li><strong>The sandbox is up but nothing is running in it.</strong> The card returns to
+Backlog <em>without</em> spending a retry — that was the restart’s fault, not the
+card’s.</li>
+<li><strong>The gateway is not back yet.</strong> Startup waits up to 3 minutes, then logs
+<code>gateway unreachable after 180s; starting without reconciling</code>. That message
+is loud on purpose: treat every Running card as suspect until you have checked
+it.</li>
+</ul>
+<h2 id="cards-that-will-not-start"><a class="header" href="#cards-that-will-not-start">Cards that will not start</a></h2>
+<p>A Backlog card is inert until someone dispatches it. Things that clear
+<code>awaiting_dispatch</code> and leave a card sitting there:</p>
+<p>lease expiry, park, halt, release, and request_changes.</p>
+<p>With auto mode off, dispatch again. With auto mode on, the next supervisor tick
+re-queues it. Auto mode never approves a Review, answers a Needs You, or unparks
+anything.</p>
+<p>Also check <code>max_concurrent</code> — with the default of 1, a second card genuinely
+will not start until the first finishes.</p>
+<h2 id="getting-a-look-at-the-ui"><a class="header" href="#getting-a-look-at-the-ui">Getting a look at the UI</a></h2>
+<pre><code class="language-bash">npm --prefix web run shots      # → web/shots/*.png
+</code></pre>
+<p>Runs a scratch sandboard on <code>:8081</code> against a fixture board and captures desktop and
+phone views. Your real board is untouched.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="configuration"><a class="header" href="#configuration">Configuration</a></h1>
+<p>sandboard stacks configuration in layers. Lower layers are operator concerns; upper
+layers are what agents read at claim time. See also
+<a href="#standing-instructions-and-quality-gates">Workflow</a> and
+<a href="#configuration-layers">Concepts</a>.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Layer</th><th>Who sets it</th><th>Role</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Process boot</strong></td><td>Host / deploy</td><td>Database URL (<code>SANDBOARD_DATABASE_URL</code> else <code>sqlite:sandboard.db</code>). Hierarchy is compile-time Project + Task.</td></tr>
+<tr><td><strong>Board Settings</strong></td><td>Operator</td><td>Policies, sandbox specs, Agent runtime (engine, concurrency, timeouts, sweep interval, <strong>standing prompt</strong>), OpenShell gateway/providers (incl. shipped <code>github-app</code>), Forge, and GitHub App repo access.</td></tr>
+<tr><td><strong>Project fields</strong></td><td>Operator</td><td>Default clone repo (<code>clone_repo</code>), optional sandbox spec override (<code>sandbox_profile_id</code>). Seeded into Project intent and the Initial plan.</td></tr>
+<tr><td><strong><code>project_prompt</code></strong></td><td>Operator</td><td>Optional Project-only standing extras. Board-wide policy lives in Agent runtime standing prompt.</td></tr>
+<tr><td><strong>Per-card intent / DoD</strong></td><td>Operator (per Task)</td><td>Card-specific work: clone target (<code>owner/name</code>), card-local gates, and the operational proof. Notes can override at claim time.</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Boot, Settings, and Project fields are operator concerns — not agent essay text.</strong>
+Do not put database URLs, Policy YAML, or sandbox spec ids in standing prompts.
+Cold briefings stack hardwired protocol, then the board standing prompt, then
+optional <code>project_prompt</code>, then card intent/DoD.</p>
+<p><strong>Quality gates</strong> — test/lint commands agents should run before publish — belong
+in the board standing prompt when board-wide, or in <code>project_prompt</code> /
+card DoD when narrower. Name the commands explicitly (<code>cargo test</code>, <code>npm test</code>,
+…). sandboard does <strong>not</strong> assume <code>cargo</code> or any other toolchain unless those
+instructions name it.</p>
+<h2 id="board-database"><a class="header" href="#board-database">Board database</a></h2>
+<p>Board rows live in a SQLx store. <strong>SQLite is the default</strong>; Postgres is
+optional, for a shared server.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Source</th><th>Example</th></tr>
+</thead>
+<tbody>
+<tr><td>Compiled default</td><td><code>sqlite:sandboard.db</code></td></tr>
+<tr><td>Environment override</td><td><code>SANDBOARD_DATABASE_URL=postgres://sandboard:sandboard@127.0.0.1:5432/sandboard</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Accepted forms:</p>
+<ul>
+<li>SQLite — <code>sqlite:sandboard.db</code>, <code>sqlite://…</code>, <code>sqlite::memory:</code> (tests)</li>
+<li>Postgres — <code>postgres://…</code> or <code>postgresql://…</code></li>
+</ul>
+<p>On boot sandboard opens the URL, applies versioned migrations from <code>migrations/</code>, and
+restores the board from rows.</p>
+<p>The database URL cannot live in board Settings — Settings persist <em>inside</em> the
+database.</p>
+<p><strong>One-shot JSON import:</strong> if the database is empty and <code>sandboard.json</code> exists in the
+working directory, sandboard imports it once and leaves the JSON alone — archive or
+delete it yourself. Later boots use the database only.</p>
+<p>Offline <code>cargo test</code> always uses SQLite. To exercise Postgres migrations
+locally, point <code>SANDBOARD_TEST_DATABASE_URL</code> at a reachable Postgres URL.</p>
+<h2 id="environment"><a class="header" href="#environment">Environment</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Variable</th><th>Effect</th></tr>
+</thead>
+<tbody>
+<tr><td><code>SANDBOARD_PORT</code></td><td>Listen port (default 8080)</td></tr>
+<tr><td><code>SANDBOARD_BIND_ADDR</code></td><td>Bind host (default <code>127.0.0.1</code>; containers use <code>0.0.0.0</code>)</td></tr>
+<tr><td><code>SANDBOARD_DATABASE_URL</code></td><td>Board database URL (default <code>sqlite:sandboard.db</code>)</td></tr>
+<tr><td><code>SANDBOARD_TEST_DATABASE_URL</code></td><td>Postgres URL for migration tests</td></tr>
+</tbody>
+</table>
+</div>
+<p>Cockpit’s shipped <code>sandboard</code> MCP entry is stdio over a local Unix socket
+(<code>socat</code>, see <a href="#how-the-mcp-relay-works">Cockpit</a>) — no URL, no env var.</p>
+<p>One host secret file: <code>~/.config/sandboard/master.key</code>, which seals credentials
+stored on the board.</p>
+<h2 id="hierarchy"><a class="header" href="#hierarchy">Hierarchy</a></h2>
+<p>Project + Task is fixed in code (<code>schema::default_levels</code>). There is no
+install-time level ladder to configure.</p>
+<h2 id="project-fields-and-project_prompt"><a class="header" href="#project-fields-and-project_prompt">Project fields and <code>project_prompt</code></a></h2>
+<p>When you create a Project (board UI, REST <code>POST /api/items</code>, or MCP
+<code>create_project</code>):</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Stored on</th><th>Purpose</th></tr>
+</thead>
+<tbody>
+<tr><td><code>clone_repo</code></td><td>Project intent</td><td>Default <code>owner/name</code> for the Initial plan and for Tasks that omit an explicit clone line. Required on create.</td></tr>
+<tr><td><code>sandbox_profile_id</code></td><td>Project row</td><td>Optional override of the board default sandbox spec. Unset means inherit Settings.</td></tr>
+<tr><td><code>project_prompt</code></td><td>Project row</td><td>Optional Project-only standing extras. Empty unless the operator supplies one.</td></tr>
+</tbody>
+</table>
+</div>
+<p><code>project_prompt</code> is <strong>not</strong> a substitute for Settings or Project fields. Keep
+boot-time config, OpenShell Policies, sandbox specs, and <code>clone_repo</code> where
+they belong. Board-wide standing policy is <strong>Settings → Agent runtime →
+standing prompt</strong>. Use <code>project_prompt</code> only for rules that apply inside one
+Project.</p>
+<p>Per-card <strong>intent</strong> and <strong>definition of done</strong> carry the card’s clone target
+and any gates that apply to that card only. The supervisor never invents gates;
+it points agents at the board / Project standing text and the card DoD.</p>
+<h2 id="agent-runtime"><a class="header" href="#agent-runtime">Agent runtime</a></h2>
+<p><strong>Settings → Agent runtime</strong> (REST: <code>/api/agent-runtime</code>): default engine,
+concurrency, agent timeout, max attempts, sweep interval, and <strong>standing
+prompt</strong> (optional board-wide agent policy; empty by default). Card branches /
+sandboxes use a fixed <code>sandboard</code> stem (<code>sandboard/card-*</code>, <code>sandboard-cockpit</code>) — not a
+Settings knob. OpenShell gateway + a sandbox spec are the practical readiness
+gates before dispatch does anything useful.</p>
+<h2 id="policies"><a class="header" href="#policies">Policies</a></h2>
+<p>A <strong>Policy</strong> is a named OpenShell YAML allow-list (filesystem / network). The
+catalog lives on the board and is edited in <strong>Settings → OpenShell → Policies</strong>
+(REST: <code>/api/openshell/policies</code>). Empty boards seed a minimal row from
+<code>src/seed_policies.rs</code>; operators add egress there as needed.</p>
+<p>Live policy always comes from this board catalog. At sandbox create the
+supervisor resolves the selected policy to YAML for OpenShell. Policy is
+<strong>fixed for that sandbox’s life</strong> for filesystem and process sections —
+recreate the sandbox after a change.</p>
+<h2 id="sandbox-specs"><a class="header" href="#sandbox-specs">Sandbox specs</a></h2>
+<p>A sandbox spec is the recipe for a sandbox: image, CPU, memory, engine,
+optional <strong>model</strong>, optional <strong>env</strong> / <strong>prompt</strong>, attached providers, and a
+<strong>reference to a named Policy</strong> (<code>policy_id</code>). Specs live on the board and are
+edited in <strong>Settings → OpenShell → Sandbox specs</strong> (REST:
+<code>/api/sandbox-profiles</code>). Upsert requires a known <code>policy_id</code>; you edit
+allow-list YAML under Policies, not on the spec.</p>
+<p>Five specs come seeded — <code>sandbox-cursor</code>, <code>sandbox-agy</code>, <code>sandbox-claude</code>,
+<code>sandbox-opencode</code>, <code>sandbox-hermes</code> — one per split <code>quay.io/sandboard-app/sandbox-&lt;engine&gt;</code> image
+(<a href="#image-and-offline-gates">Sandbox</a>), each already wired to a
+matching minimal Cockpit policy with sandboard MCP attached. Editing a seeded row
+sticks; the seed only inserts what’s missing.</p>
+<h3 id="model"><a class="header" href="#model">Model</a></h3>
+<p>An optional <strong>model</strong> on the spec names the model sandboard passes to agent CLIs
+that accept a <code>--model</code> flag on launch (<code>agy</code>, <code>cursor</code> / <code>agent</code>, <code>opencode</code>,
+<code>hermes</code>). OpenCode values use the <code>provider/model</code> format, such as
+<code>openrouter/deepseek/deepseek-v4-flash-0731</code>. Leave it
+unset to inherit the engine default — for <code>agy</code>, <code>gemini-3.6-flash-high</code>
+(<code>DEFAULT_SEAT_MODEL</code>); for <code>cursor</code>, the account default for your API key.</p>
+<p>Resolution at claim/run:</p>
+<ol>
+<li><strong><code>card.model</code></strong> on the Task (if set) — per-card override on claim</li>
+<li><strong>Sandbox spec <code>model</code></strong> — the winning profile for that card</li>
+<li><strong>Engine default</strong> — compiled fallback when both are unset (<code>agy</code> only; <code>cursor</code> uses the account default; Hermes uses image config <code>openai/gpt-4o-mini</code>)</li>
+</ol>
+<p>The board and card UI show the resolved value (<code>resolved_model</code>). Cockpit uses
+the same spec → default chain (no card).</p>
+<p><strong><code>claude</code> does not read the spec model.</strong> Claude reaches models through
+OpenShell’s <code>inference.local</code> router; which model it gets is whatever you
+configured on the gateway with <code>openshell inference set</code> (see <a href="#how-credentials-reach-the-agent">Sandbox</a>).
+OpenCode does read the resolved spec/card model and passes it as
+<code>--model provider/model</code>; when it is unset, OpenCode uses its own configured
+default.</p>
+<p>Hermes uses the endpoint-bearing <code>openrouter</code> provider type. Add an
+OpenShell provider instance with the <code>OPENROUTER_API_KEY</code> credential and attach
+that instance to any profile whose client uses OpenRouter. Hermes is one such
+client. When a card or spec model is set, sandboard passes <code>--model</code>; when unset,
+Hermes uses the image’s
+<code>openai/gpt-4o-mini</code> default.</p>
+<h3 id="environment-env"><a class="header" href="#environment-env">Environment (<code>env</code>)</a></h3>
+<p>Optional string map on the spec. At sandbox create (card and Cockpit), sandboard
+builds env as <code>agent_env(engine)</code> then overlays the resolved profile’s <code>env</code> —
+<strong>profile wins on key clash</strong>. Spec <code>env</code> is <strong>non-secret by contract</strong>: put
+API URLs, tool paths, and similar seat wiring here; put credentials on
+<strong>Providers</strong> (attached on the same spec). The Settings editor shows that hint
+next to the key/value fields. See <a href="#spec-env-and-prompt">Sandbox</a>.</p>
+<h3 id="prompt-prompt"><a class="header" href="#prompt-prompt">Prompt (<code>prompt</code>)</a></h3>
+<p>Optional seat notes on the spec. At claim, <code>ClaimGrant</code> carries
+<code>sandbox_prompt</code> from the resolved profile. Cold card briefing inserts a
+<strong>Sandbox prompt (seat notes):</strong> section after <strong>Project prompt</strong> when
+non-empty; Cockpit seed briefing includes the cockpit profile’s prompt the same
+way. Resume briefing (conversation memory already has it) does <strong>not</strong> re-dump
+the sandbox prompt. See <a href="#spec-env-and-prompt">Sandbox</a>.</p>
+<p><strong>Operator practice:</strong> put an API base URL in <code>env</code> and short usage notes in
+<code>prompt</code> (for example how to call a cluster API from the seat). Do <strong>not</strong>
+hardcode product-specific CLIs or cluster wiring into the binary or supervisor
+— keep that on the live board’s sandbox specs.</p>
+<h3 id="which-spec-a-card-gets"><a class="header" href="#which-spec-a-card-gets">Which spec a card gets</a></h3>
+<p>Resolution order is documented in <a href="#sandbox">Sandbox</a>. Create-form defaults
+select the seeded minimal policy; attach providers and pick the policy the run
+needs.</p>
+<h3 id="cockpit-1"><a class="header" href="#cockpit-1">Cockpit</a></h3>
+<p>Cockpit uses the global default sandbox spec unless you set an explicit Cockpit
+profile under Sandbox specs. A fresh board seeds all five specs but picks none
+of them as default — that choice is an onboarding step (Welcome flags it red
+until you set one). Pick a seeded spec (or one you made) and click <strong>Set
+default</strong>, or <strong>Use for Cockpit</strong> to give Cockpit its own engine. That spec’s
+<code>policy_id</code> is what the sandbox gets at create. The cockpit profile’s <code>env</code> and
+<code>prompt</code> apply the same create-time overlay and seed-briefing rules as card
+specs.</p>
+<h2 id="openshell--forge--github-app-provider"><a class="header" href="#openshell--forge--github-app-provider">OpenShell / Forge / GitHub App provider</a></h2>
+<p>Connectivity, providers (including the shipped <code>github-app</code> type that mints
+<code>GH_TOKEN</code>), provider types, Policies, Sandbox specs, Forge poll, and <strong>Repo
+access</strong> are board Settings — see the Settings UI and <a href="#your-first-agent">Your first agent</a>.</p>
+<p><strong>Repo access</strong> walks every GitHub App installation and caches <code>owner/repo</code> →
+installation id, permissions, and last-seen time. Refresh from Settings or wait
+for the background job. Use the GitHub install link to add missing
+repositories. Token minting is unchanged: the <code>github-app</code> provider still uses
+the configured <code>GITHUB_INSTALLATION_ID</code>.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="architecture"><a class="header" href="#architecture">Architecture</a></h1>
+<p>One page on how the pieces fit. Present tense; code paths, not history.</p>
+<h2 id="one-state-machine"><a class="header" href="#one-state-machine">One state machine</a></h2>
+<p>Every mutation — UI, MCP, supervisor — goes through <code>Board</code> in <code>src/store.rs</code>.
+Legal transitions and lifecycle invariants live in <code>src/machine.rs</code>. Transports
+(<code>api.rs</code>, <code>mcp.rs</code>, SSE) render and invoke; they do not own rules.</p>
+<pre><code>UI / MCP / supervisor
+         │
+         ▼
+      Board (store.rs) ── persistence (SQLx) ── event bus (SSE)
+         │
+         ├── machine.rs   legal transitions
+         └── model.rs     Project + Task node type
+</code></pre>
+<h2 id="layout"><a class="header" href="#layout">Layout</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Path</th><th>What</th></tr>
+</thead>
+<tbody>
+<tr><td><code>src/model.rs</code></td><td>One node type: Project (container) + Task (claimable leaf). Cockpit session singleton.</td></tr>
+<tr><td><code>src/machine.rs</code></td><td>Legal transitions and lifecycle invariants, for cards and the cockpit session.</td></tr>
+<tr><td><code>src/store.rs</code></td><td>The board: state, persistence, event bus, derived reads.</td></tr>
+<tr><td><code>src/api.rs</code> <code>src/sse.rs</code> <code>src/cockpit_chat.rs</code></td><td>The human face — REST, board SSE, cockpit chat bridge.</td></tr>
+<tr><td><code>src/mcp.rs</code></td><td>Operator MCP tools; the supervisor keeps worker verbs.</td></tr>
+<tr><td><code>src/openshell.rs</code></td><td>In-process gRPC client to the OpenShell gateway (board endpoint + sealed mTLS); every call has a deadline.</td></tr>
+<tr><td><code>src/supervisor.rs</code></td><td>Card dispatch, durable cockpit start/reconcile/stop, briefing, lease sweeping.</td></tr>
+<tr><td><code>src/engine.rs</code></td><td>Explicit registry of agent engines — unknown ids fail loud.</td></tr>
+<tr><td>Process boot</td><td>Database URL via <code>SANDBOARD_DATABASE_URL</code> (else <code>sqlite:sandboard.db</code>). Hierarchy is compile-time Project + Task.</td></tr>
+<tr><td><code>sandbox/</code></td><td>Container image; minimal create-form Policy seed lives in <code>src/seed_policies.rs</code> (board Policies catalog is live).</td></tr>
+<tr><td><code>web/</code></td><td>React UI + Playwright screenshot harness.</td></tr>
+<tr><td><code>migrations/</code></td><td>Versioned SQLx migrations for the board store.</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="sandboards-supervisor"><a class="header" href="#sandboards-supervisor">Sandboard’s supervisor</a></h2>
+<p>The supervisor is an internal part of Sandboard, not a separate service. It is the
+execution loop that connects Board state to the OpenShell gateway and keeps a run
+reconciled with the card that started it.</p>
+<p>The supervisor:</p>
+<ol>
+<li>Health-checks the OpenShell gateway.</li>
+<li>Auto-enqueues claimable Backlog leaves under Projects with auto mode on.</li>
+<li>Claims the oldest <code>awaiting_dispatch</code> card within concurrency limits.</li>
+<li>Creates or reuses a sandbox, builds a briefing from the Project→Task chain,
+and starts the agent detached.</li>
+<li>Parses the output stream for liveness; calls <code>heartbeat</code> / <code>report</code> on the
+board’s behalf.</li>
+<li>Sweeps expired leases, and on startup reconciles live sandboxes so a sandboard
+restart does not orphan a running agent.</li>
+</ol>
+<p>Separately, when a Board <strong>cockpit session</strong> exists, the supervisor creates or
+reuses the cockpit-spec sandbox (<code>sandboard.cockpit</code> label), starts the agent
+detached, reconciles across restart (keeping sandbox and conversation, like
+park), and stops cleanly when the session is cleared. That path never touches
+claim / heartbeat / report / split or the card dispatch queue — the Board’s
+<code>cockpit_session</code> fields stay authoritative.</p>
+<p>The card worker has no network path to sandboard. The supervisor is the only caller
+of worker verbs on the live path.</p>
+<h2 id="mcp-and-rest"><a class="header" href="#mcp-and-rest">MCP and REST</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Face</th><th>Transport</th><th>Audience</th></tr>
+</thead>
+<tbody>
+<tr><td>Operator MCP (operator tools only)</td><td>MCP streamable HTTP at <code>/mcp</code></td><td>Chat and cockpit agents (OAuth)</td></tr>
+<tr><td>Host operator (operator + worker verbs)</td><td><code>Operator::host</code>, in-process</td><td>Supervisor/host tooling and tests</td></tr>
+<tr><td>Human UI</td><td>REST + board SSE</td><td>React app; one-tap answers and approvals</td></tr>
+<tr><td>Agent bootstrap guide</td><td><code>GET /llms.txt</code> (no auth)</td><td>Operator agents on a fresh board</td></tr>
+<tr><td>Cockpit terminal</td><td><code>GET</code>/WS <code>/api/cockpit-attach</code></td><td>xterm → <code>ExecSandboxInteractive</code></td></tr>
+<tr><td>Cockpit chat bridge (legacy)</td><td><code>POST /api/cockpit-chat</code> (SSE)</td><td>Detached-agent stream-json bridge</td></tr>
+</tbody>
+</table>
+</div>
+<p><code>/mcp</code> does not expose worker verbs (<code>claim</code>, <code>heartbeat</code>, <code>report</code>, <code>split</code>,
+<code>escalate</code>, <code>release</code>, <code>list_ready</code>). Operator clients triage and dispatch; they
+do not run the card lifecycle.</p>
+<p>Steer, pin, park, halt, and cut scope all want a reason, so they live in MCP.
+What stays one-tap in the UI is answering an escalation and approving a review.</p>
+<p>The MCP surface is stateless on purpose: tools are request/response over
+<code>SharedBoard</code>. An in-memory session id only made clients brittle across restarts
+without buying server→client streams.</p>
+<h2 id="how-the-cli-attaches"><a class="header" href="#how-the-cli-attaches">How the CLI attaches</a></h2>
+<p>There is no <code>ConnectSandbox</code> RPC. <code>openshell sandbox connect</code> (a human at a
+terminal, not sandboard) is a chain:</p>
+<ol>
+<li><code>GetSandbox(name)</code> → <code>sandbox_id</code></li>
+<li><code>CreateSshSession(sandbox_id)</code> → short-lived token plus gateway host/port</li>
+<li>local <code>ssh -tt sandbox</code> with <code>ProxyCommand=openshell ssh-proxy … --token …</code></li>
+<li><code>ssh-proxy</code> tunnels via <code>ForwardTcp</code></li>
+</ol>
+<p>sandboard itself never runs this chain — no local <code>ssh</code>, no <code>CreateSshSession</code>. A
+browser cannot complete the OpenSSH ProxyCommand chain anyway, so both the
+in-browser terminal and cockpit’s MCP session use <code>ExecSandboxInteractive</code>
+directly: the terminal relays it over a WebSocket (see
+<a href="#how-the-browser-terminal-works">Cockpit</a>), and cockpit MCP wraps
+its stdin/stdout as an <code>rmcp</code> transport instead of tunneling TCP (see
+<a href="#cockpit">Cockpit</a>).</p>
+<h2 id="persistence"><a class="header" href="#persistence">Persistence</a></h2>
+<p>SQLx board store — SQLite by default, Postgres optional. Configured by
+<code>board.database.url</code> or <code>SANDBOARD_DATABASE_URL</code>. Mutations flush as row updates,
+with an optional one-shot import from <code>sandboard.json</code> when the database is empty.
+See <a href="#board-database">Configuration</a>.</p>
+<h2 id="related-1"><a class="header" href="#related-1">Related</a></h2>
+<ul>
+<li><a href="#concepts">Concepts</a> — the product model</li>
+<li><a href="#invariants">Invariants</a> — what will not change, and why</li>
+<li><a href="#sandbox">Sandbox</a> — what a run looks like from inside</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="sandbox"><a class="header" href="#sandbox">Sandbox</a></h1>
+<p>How a sandboxed agent run works, and the operator-relevant gotchas. Assets live
+under <a href="https://github.com/sandboard-app/sandboard/tree/main/sandbox"><code>sandbox/</code></a>; this page is the prose companion.</p>
+<h2 id="how-credentials-reach-the-agent"><a class="header" href="#how-credentials-reach-the-agent">How credentials reach the agent</a></h2>
+<p>Claude Code talks to OpenShell’s local inference router. OpenCode receives the
+resolved <code>provider/model</code> from the sandbox spec or card when one is set; its
+Anthropic-compatible local route remains available when no direct model is
+selected. Direct OpenRouter clients attach the endpoint-bearing
+<code>sandboard-openrouter</code> provider, which injects <code>OPENROUTER_API_KEY</code> into the
+sandbox and scopes that key to OpenRouter egress. Hermes is one such client; the
+key is sealed by OpenShell and never baked into the image or copied from the host
+at runtime.</p>
+<pre><code>openshell provider create --name sandboard-openrouter --type openrouter \
+  --credential OPENROUTER_API_KEY
+        │
+        ▼
+sandbox agent
+  OPENROUTER_API_KEY=openshell:resolve:…
+        │
+        ▼
+https://openrouter.ai/api/v1
+</code></pre>
+<p>Operator setup (once per gateway):</p>
+<pre><code class="language-bash">openshell provider create --name sandboard-openrouter --type openrouter \
+  --credential OPENROUTER_API_KEY=&lt;your-key&gt;
+</code></pre>
+<p>Inside the sandbox sandboard exports (engine-specific):</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Engine</th><th>Inference env</th><th>Notes</th></tr>
+</thead>
+<tbody>
+<tr><td><code>claude</code></td><td><code>https://inference.local</code></td><td>Claude appends <code>/v1/messages</code>; <code>--bare</code> + <code>--mcp-config</code> for MCP</td></tr>
+<tr><td><code>opencode</code></td><td><code>https://inference.local/v1</code></td><td>Anthropic-compatible fallback; an explicit <code>--model provider/model</code> selects the configured provider (for example <code>openrouter/deepseek/deepseek-v4-flash-0731</code>)</td></tr>
+<tr><td><code>hermes</code></td><td><code>model.base_url=https://openrouter.ai/api/v1</code></td><td>Hermes’ built-in OpenRouter provider uses the endpoint; the attached <code>sandboard-openrouter</code> provider supplies <code>OPENROUTER_API_KEY</code> as an OpenShell placeholder and the image wrapper keeps <code>HERMES_HOME</code> in the sandbox</td></tr>
+</tbody>
+</table>
+</div>
+<p>Do <strong>not</strong> set <code>CLAUDE_CODE_USE_VERTEX=1</code> in the sandbox. That forces direct
+Vertex + ADC/metadata discovery, which OpenShell blocks (real GCE metadata is
+SSRF-hardened). Use the attached provider and the seeded OpenRouter policy instead.</p>
+<h2 id="gateway-client-grpc--mtls-or-oidc"><a class="header" href="#gateway-client-grpc--mtls-or-oidc">Gateway client (gRPC + mTLS or OIDC)</a></h2>
+<p><code>src/openshell.rs</code> talks to the gateway in-process over gRPC. Settings require
+an explicit auth mode:</p>
+<ul>
+<li><strong>mTLS</strong> — HTTPS with sealed client PEMs (board DB).</li>
+<li><strong>OIDC</strong> — HTTPS with <code>authorization: Bearer</code> (via
+<code>openshell_core::auth::EdgeAuthInterceptor</code>); browser PKCE uses a loopback
+<code>redirect_uri</code> (<code>http://127.0.0.1:&lt;port&gt;/callback</code>, same shape as the
+OpenShell CLI). Paste the callback URL into Settings — the loopback page will
+not load on a remote/Tailscale board. Tokens seal in the board DB; refresh
+uses <code>openshell-sdk</code> OIDC helpers.</li>
+</ul>
+<p>Endpoint must be <code>https://</code>. The only host secret file is
+<code>~/.config/sandboard/master.key</code>. Upload/download use exec + tar over that same
+channel — no <code>openshell</code> CLI spawn. We build the tonic channel ourselves and use
+<code>openshell-core</code> / <code>openshell-policy</code> for protos and YAML policy.</p>
+<h2 id="agent-surface"><a class="header" href="#agent-surface">Agent surface</a></h2>
+<p>Card intent and protocol paths come from the supervisor briefing (and files
+under <code>/sandbox/.sandboard</code>). Agents finish via <code>plan.json</code> / <code>report.json</code> /
+<code>escalate.json</code> / <code>split.json</code>. The board is the only tracker — sandboxes do
+not carry a separate issue-store CLI or database.</p>
+<h2 id="spec-env-and-prompt"><a class="header" href="#spec-env-and-prompt">Spec env and prompt</a></h2>
+<p>Sandbox specs (Settings → OpenShell → Sandbox specs) may carry optional
+<strong><code>env</code></strong> (string map) and <strong><code>prompt</code></strong> (seat notes). Edit them on create/edit
+in the UI; they round-trip on the profile API. Details and resolution live under
+<a href="#sandbox-specs">Configuration</a>.</p>
+<h3 id="create-time-env-overlay"><a class="header" href="#create-time-env-overlay">Create-time env overlay</a></h3>
+<p>At sandbox create (card path and Cockpit), sandboard builds the OpenShell create env
+as:</p>
+<ol>
+<li><strong><code>agent_env(engine)</code></strong> — toolchain / seat defaults the supervisor always
+passes (<code>PATH</code>, <code>HOME</code>, cargo/npm homes, engine inference URLs, …)</li>
+<li><strong>Profile <code>env</code> overlay</strong> — keys from the resolved sandbox spec</li>
+</ol>
+<p>On a key clash, <strong>the profile wins</strong>. Spec <code>env</code> is <strong>non-secret</strong>: API URLs,
+tool paths, and similar wiring belong here; secrets stay on <strong>Providers</strong>
+(attach them on the same spec). The Settings editor states that distinction
+next to the env key/value fields.</p>
+<h3 id="briefing-injection"><a class="header" href="#briefing-injection">Briefing injection</a></h3>
+<p>When a card is claimed, the grant carries <code>sandbox_prompt</code> from the resolved
+sandbox profile. Cold card <code>briefing()</code> inserts a generic section after
+<strong>Project prompt</strong> when that value is non-empty:</p>
+<pre><code>Sandbox prompt (seat notes):
+…
+</code></pre>
+<p><code>cockpit_briefing()</code> appends the cockpit sandbox profile’s prompt the same way.
+<code>resume_briefing()</code> does <strong>not</strong> re-dump the sandbox prompt — conversation
+memory already has it from the cold start.</p>
+<h3 id="operator-practice"><a class="header" href="#operator-practice">Operator practice</a></h3>
+<p>Put seat wiring on the live board’s sandbox specs — for example an API base URL
+in <code>env</code> and short usage notes in <code>prompt</code>. Do <strong>not</strong> hardcode product-specific
+CLIs or cluster tooling (MicroShift / <code>oc</code>, kubeconfig writers, PATH wrappers,
+post-Ready setup scripts) into the binary or supervisor; those stay out of
+scope of sandboard itself.</p>
+<h2 id="model-selection"><a class="header" href="#model-selection">Model selection</a></h2>
+<p>Which model an agent run uses depends on the engine.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Engine</th><th>How model is chosen</th><th>Operator configures</th></tr>
+</thead>
+<tbody>
+<tr><td><code>agy</code></td><td><code>card.model</code> → sandbox spec <strong>model</strong> → <code>DEFAULT_SEAT_MODEL</code> (<code>gemini-3.6-flash-high</code>)</td><td>Optional <strong>Model</strong> on <strong>Settings → OpenShell → Sandbox specs</strong>; per-card <code>model</code> on claim overrides the spec</td></tr>
+<tr><td><code>cursor</code></td><td><code>card.model</code> → sandbox spec <strong>model</strong> → Cursor account default (no sandboard fallback)</td><td>Same optional <strong>Model</strong> field; omit it to use the account default for your API key</td></tr>
+<tr><td><code>claude</code></td><td>OpenShell <code>inference.local</code> — gateway route from <code>openshell inference set</code></td><td>Gateway CLI once per install (see <a href="#how-credentials-reach-the-agent">How credentials reach the agent</a>); not the sandbox spec model field</td></tr>
+<tr><td><code>opencode</code></td><td><code>card.model</code> → sandbox spec <strong>model</strong> as <code>--model provider/model</code> → OpenCode default</td><td>Set <strong>Model</strong> on the spec and attach the matching provider, such as <code>openrouter</code>, for direct provider routing</td></tr>
+<tr><td><code>hermes</code></td><td><code>card.model</code> → sandbox spec <strong>model</strong> → Hermes image default (<code>openai/gpt-4o-mini</code>)</td><td>Optional <strong>Model</strong> field; the <code>openrouter</code> provider supplies <code>OPENROUTER_API_KEY</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>For engines whose CLI accepts <code>--model</code> on launch, sandboard injects the resolved
+value into the supervisor start script and Cockpit attach/chat argv. Today that
+is <code>agy</code>, <code>cursor</code>, <code>opencode</code>, and <code>hermes</code>. Put <code>--model</code> <strong>before</strong> <code>-p</code> when
+invoking agy manually — <code>-p</code> takes the next argv as the prompt.</p>
+<p>Seeded sandbox specs load with <strong>model</strong> unset; <code>agy</code> cards then get
+<code>DEFAULT_SEAT_MODEL</code> unless you set a spec default or override a card at claim
+time. The card badge and Detail pane show the resolved model when known.</p>
+<h2 id="image"><a class="header" href="#image">Image</a></h2>
+<p><a href="https://github.com/sandboard-app/sandboard/blob/main/sandbox/Containerfile"><code>sandbox/Containerfile</code></a> builds sandboard’s own base — a
+minimal Red Hat UBI9 image, not the OpenShell community image — plus a Rust
+toolchain, split into one build target per agent engine. A <code>shared</code> stage
+installs OS packages (<code>git</code>, <code>nodejs</code>/<code>npm</code>, <code>gh</code>, <code>gcc</code>/<code>make</code>, <code>iproute</code>,
+<code>nftables</code>, <code>socat</code>) and bakes <code>cargo</code>/<code>clippy</code>, then one leaf stage per agent
+engine (<code>cursor</code>, <code>agy</code>, <code>claude</code>, <code>opencode</code>, <code>hermes</code>) installs only that engine’s CLI
+on top — a sandbox only ever carries the one binary it will actually run.</p>
+<p>The toolchain is baked in, but sandboard’s own source and dependency tree are not.
+A card’s own <code>cargo build</code>/<code>npm ci</code> populate <code>$CARGO_HOME</code> (<code>/opt/cargo</code>),
+<code>$CARGO_TARGET_DIR</code> (<code>/opt/cargo-target</code>), and <code>$NPM_CONFIG_CACHE</code>
+(<code>/opt/npm-cache</code>) at runtime by fetching crates.io/npm live — there is no
+pre-baked cache to go stale every time <code>Cargo.lock</code> or <code>src/</code> changes. This
+means the matching Policy has to allow that egress; see
+<a href="#default-vs-cockpit">Default vs Cockpit</a> for the seeded per-engine policies.</p>
+<p>Why UBI9 instead of the OpenShell community image: that image bakes in every
+supported agent CLI, a Python/uv/cloudpickle skills venv, and Ubuntu
+convenience tooling sandboard never touches, regardless of which engine-specific
+target you build. OpenShell’s own documented minimum for a custom sandbox
+image is just <code>iproute2</code> (required) and <code>nftables</code> (optional) — see
+<code>examples/bring-your-own-container/Dockerfile</code> in the OpenShell source.
+Building from <code>ubi9/ubi</code> plus exactly what sandboard needs cuts each image from
+~15GB (the community-base version) to under 2GB.</p>
+<p>OpenShift restricted SCC ignores image <code>USER</code> and runs as a random UID in
+supplementary group 0, so installer trees must not keep foreign uids (<code>cp -a --no-preserve=ownership</code>) and writable paths are <code>chown sandbox:root</code> /
+<code>chgrp 0</code> with <code>g=u</code>. The named <code>sandbox</code> account is <strong>not</strong> a member of GID
+0: OpenShell’s local podman supervisor refuses that (<code>OCI user is a member of prohibited GID 0</code>). Local runs use owner bits; OpenShift uses group 0 bits.</p>
+<pre><code class="language-bash"># from the repo root
+make sandbox        # builds all five quay.io/sandboard-app/sandbox-&lt;engine&gt;:latest
+make sandbox-push   # builds, then pushes all five
+# or: podman build -f sandbox/Containerfile --target cursor -t quay.io/sandboard-app/sandbox-cursor:latest .
+# Docker: CONTAINER_ENGINE=docker make sandbox
+# Different registry: REGISTRY=ghcr.io/you make sandbox
+</code></pre>
+<p>The image flag is <code>--from</code>, not <code>--image</code>. Rebuild when you need a newer
+engine CLI, OS package, or Rust toolchain version — not when sandboard’s own source
+changes, since none of it is baked in. Matching <code>/opt</code> entries belong in the
+<strong>board Policies</strong> catalog (Settings → OpenShell → Policies):
+<code>/opt/cargo</code>, <code>/opt/cargo-target</code>, <code>/opt/npm-cache</code> need <strong>read-write</strong> (a
+card’s build populates them, not the image), while <code>/opt/rust</code> (+ that
+engine’s own <code>/opt/cursor-agent</code>, <code>/opt/opencode</code>, or <code>/opt/hermes</code>) stays
+<strong>read-only</strong>. The Hermes image also bakes Python 3.12 and an editable Hermes
+installation under <code>/opt/hermes</code>; its wrapper keeps runtime state under
+<code>/sandbox/.hermes</code> and merges the Board-injected MCP YAML fragment there.
+<code>src/seed_policies.rs</code> seeds one minimal Cockpit policy per engine matching
+each split image’s contents, including the crates.io/npm/GitHub egress a
+build needs — see <a href="#default-vs-cockpit">Default vs Cockpit</a>.</p>
+<p><strong>Binary identity gotcha, verified live:</strong> <code>/opt/cargo/bin/cargo</code> is rustup’s
+proxy binary — it re-execs the real <code>cargo</code> under
+<code>/opt/rust/toolchains/&lt;version&gt;/bin/cargo</code> at runtime. That’s a process exec,
+not a filesystem symlink, so OpenShell’s literal binary-path matching needs
+its own entry for the toolchain path (a glob, since the version is baked into
+the directory name) or a card’s first <code>cargo build</code> gets a 403 on crates.io
+even with the proxy path allowed.</p>
+<h2 id="operator-relevant-gotchas"><a class="header" href="#operator-relevant-gotchas">Operator-relevant gotchas</a></h2>
+<p><strong>Everything fails as a hang, not an error.</strong> Denied egress, missing
+credential, wedged relay: all silence. Every exec needs a deadline; treat
+silence as failure.</p>
+<p><strong>The image’s <code>ENV</code> does not reach <code>openshell sandbox exec</code>.</strong> Pass toolchain
+vars explicitly in <code>agent_env</code> (supervisor does this), or install wrappers on
+the default PATH. Baking <code>ENV PATH=…</code> into the Containerfile is not enough.</p>
+<p><strong>Upload destination is a directory</strong> (same semantics as the old CLI): uploading
+to <code>/tmp/foo.py</code> creates a <em>directory</em> of that name with the file
+inside it. Put the file in <code>/tmp</code> so it lands at <code>/tmp/foo.py</code>.</p>
+<p><strong>The compute driver can stop on its own.</strong> Classify that as infrastructure,
+not as the card failing: see <code>is_infrastructure</code> in the supervisor.</p>
+<p><strong>Workdir: cold start empties; reclaim preserves.</strong> Brand-new sandbox create
+clears <code>/sandbox/repo</code> so the agent clones into an empty tree from the Remotes
+briefing (<code>origin</code> / <code>upstream</code>). Reclaim of a kept sandbox — park resume and
+Needs You answer share the same reuse path — does <strong>not</strong> wipe <code>/sandbox/repo</code>.
+When a checkout exists, the supervisor refreshes in place: fetch the PR-target
+tip, prefer the local card branch (not a hard reset to <code>origin/</code>), and rebase
+only when the tree is clean. Dirty mid-run edits stay put — MainAdvanced steer
+asks the agent to rebase. Otherwise it ensures the directory without clearing
+prior contents or caches. The supervisor never clones; the agent does.
+<code>/sandbox/.sandboard</code> is always present at start with at least <code>report.schema.json</code>.
+If a clean-tree reuse rebase conflicts, the supervisor backs out and tells the
+agent to resolve it.</p>
+<p><strong>Policy is fixed for a live sandbox</strong> for filesystem and process sections.
+Live policy comes from the board Policies catalog and is applied at create time;
+<code>policy set --wait</code> is expensive.</p>
+<p><strong>Binary paths are matched literally</strong> in the policy. Lists include the real git
+helper paths (e.g. <code>/usr/lib/git-core/git-remote-http</code>).</p>
+<h2 id="default-vs-cockpit"><a class="header" href="#default-vs-cockpit">Default vs Cockpit</a></h2>
+<p>Five sandbox specs come seeded — <code>sandbox-cursor</code>, <code>sandbox-agy</code>,
+<code>sandbox-claude</code>, <code>sandbox-opencode</code>, <code>sandbox-hermes</code> — one per split image, each pointed at a
+matching minimal Cockpit policy (<code>cockpit-cursor</code>, …) with sandboard MCP already
+attached. Seeding never sets a default — which engine to run is your call, and
+a fresh board’s Welcome page flags “Sandbox spec” as not ready until you make
+it. Pick one under <strong>Settings → OpenShell → Sandbox specs</strong> and click <strong>Set
+default</strong>; Cockpit inherits that default until you pick a different seeded row
+(or a profile you made) and click <strong>Use for Cockpit</strong>. These rows are inserts,
+not overwrites — editing one sticks; a re-seed on the next boot leaves your
+edit alone.</p>
+<p>Attach on create starts empty for a profile you make yourself — add providers
+under <strong>Providers</strong>, then check them on the spec. Add sandboard MCP /
+package-registry / toolchain egress under <strong>Policies</strong> when you need it.</p>
+<p>Cockpit MCP does <strong>not</strong> use <code>host.docker.internal</code> and does not cross the
+network at all. When the seat is Ready, sandboard keeps a board-owned
+<code>ExecSandboxInteractive</code> relay running one-shot <code>socat UNIX-LISTEN:… STDIO</code>
+on a local Unix socket inside the sandbox, and wires its gRPC-piped
+stdin/stdout straight into the same <code>Operator</code> MCP handler that serves host
+<code>/mcp</code> (<code>rmcp::serve_server</code> over the pipe). Disconnect ends the listen so
+the board can re-spawn; the agent’s MCP client is stdio (<code>socat - UNIX-CONNECT:&lt;socket&gt;</code>) — same path on local Docker/Podman and remote
+Kubernetes, since it never leaves the sandbox’s own netns. OpenShell SSH has
+no RemoteForward either way, so this was never a <code>ssh -R</code> option. Not <code>nc</code>:
+see <a href="#how-the-mcp-relay-works">Cockpit</a> for why.</p>
+<h2 id="antigravity--agy"><a class="header" href="#antigravity--agy">Antigravity / agy</a></h2>
+<p>Bare OpenShell <code>generic</code> providers do <strong>not</strong> resolve
+<code>openshell:resolve:…</code> placeholders — the egress proxy only substitutes on
+endpoints declared by a <strong>provider type</strong>. Sandboard ships board provider types
+<a href="https://github.com/sandboard-app/sandboard/blob/main/sandbox/openshell/antigravity.yaml"><code>sandbox/openshell/antigravity.yaml</code></a>
+(<code>auth_style: bearer</code>, Cloud Code / Google API hosts) and
+<a href="https://github.com/sandboard-app/sandboard/blob/main/sandbox/openshell/cursor-agent.yaml"><code>sandbox/openshell/cursor-agent.yaml</code></a>
+(<code>CURSOR_API_KEY</code>, Bearer on Cursor API hosts). Both seed into
+<strong>Settings → OpenShell → Provider types</strong> and import on provider Sync when
+missing. Builtin OpenShell <code>cursor</code> remains egress-only (no credentials).</p>
+<p>Under <strong>Settings → OpenShell → Providers</strong>, use <strong>Log in with Google</strong> on the
+<code>antigravity</code> provider (host-mediated PKCE against Google’s Antigravity
+installed-app client). That seals the access token plus refresh material on the
+board; the gateway’s <code>oauth2_refresh_token</code> strategy keeps <code>ya29</code> fresh. sandboard
+does not read the host keychain — it makes no assumptions about credentials
+sitting on the machine it runs on.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Layer</th><th>Holds</th></tr>
+</thead>
+<tbody>
+<tr><td>Board provider <code>antigravity</code></td><td>Sealed <code>ANTIGRAVITY_ACCESS_TOKEN</code> + refresh material (<code>client_id</code> / <code>client_secret</code> / <code>refresh_token</code>) from Log in with Google</td></tr>
+<tr><td>Gateway</td><td>Live credential + refresh; injects placeholder env into attached sandboxes</td></tr>
+<tr><td>Seat token file</td><td>Placeholder only + far-future expiry; <strong>no</strong> seat-side <code>refresh_token</code></td></tr>
+<tr><td>Seat <code>settings.json</code></td><td><code>enableTelemetry: false</code>, <code>gcp.project</code> / <code>gcp.location</code> from Board provider config <code>ANTIGRAVITY_GCP_PROJECT</code> / <code>ANTIGRAVITY_GCP_LOCATION</code> (Settings → Providers)</td></tr>
+<tr><td>Seat env (agy launch)</td><td><code>GOOGLE_CLOUD_PROJECT</code> / <code>GOOGLE_CLOUD_QUOTA_PROJECT</code> set from the same Board project so they win over Vertex’s injected project — agy otherwise leaves <code>quotaProject</code> empty</td></tr>
+<tr><td>Seat default model</td><td><code>gemini-3.6-flash-high</code> (<code>DEFAULT_SEAT_MODEL</code>) when the spec and card omit model — requires the consumer Antigravity OAuth client from Settings → Log in with Google (the Business Cloud Code client returns Flash rows without <code>vertexModelId</code>)</td></tr>
+</tbody>
+</table>
+</div>
+<p>Set a default on the <code>sandbox-agy</code> spec under <strong>Settings → OpenShell → Sandbox
+specs</strong> to avoid repeating the same model on every card. A Task’s <code>model</code> field
+on claim still wins over the spec.</p>
+<p>Provider type YAML must list <code>aiplatform.googleapis.com</code> (and <code>*-aiplatform.googleapis.com</code>) so <code>streamGenerateContent</code> / OpenAI-compat chat is allowed under <code>_provider_antigravity</code>, not only the cockpit <code>vertex_ai</code> policy group.</p>
+<p>Attach names that are not in the Providers catalog are pruned on board load.</p>
+<h2 id="related-2"><a class="header" href="#related-2">Related</a></h2>
+<ul>
+<li><a href="#your-first-agent">Your first agent</a> — Welcome/Help OpenShell onboarding, then the first run</li>
+<li><a href="#troubleshooting">Troubleshooting</a> — the gotchas above, as symptoms</li>
+<li><a href="#policies">Configuration</a> — Policies catalog vs Sandbox specs</li>
+<li><a href="#sandbox-specs">Configuration</a> — spec resolution, engines, env / prompt</li>
+<li><a href="#spec-env-and-prompt">Spec env and prompt</a> — create-time overlay and briefing injection</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="invariants"><a class="header" href="#invariants">Invariants</a></h1>
+<p>Properties sandboard will not trade away as the surface grows, and why each one
+matters. If a change would break one of these, the change is wrong.</p>
+<h2 id="one-state-machine-1"><a class="header" href="#one-state-machine-1">One state machine</a></h2>
+<p>Every mutation — UI, MCP, supervisor — goes through <code>Board</code> in <code>src/store.rs</code>.
+Legal transitions live in <code>src/machine.rs</code>. No transport holds state-machine
+logic.</p>
+<p><em>Why:</em> the board has several faces and they must not drift. A rule encoded in
+<code>api.rs</code> is a rule MCP does not have, and the first time those disagree you have
+two products.</p>
+<h2 id="workers-cannot-reach-sandboard"><a class="header" href="#workers-cannot-reach-sandboard">Workers cannot reach sandboard</a></h2>
+<p>The card agent gets no network path to sandboard. The supervisor calls <code>claim</code> /
+<code>heartbeat</code> / <code>report</code> on its behalf.</p>
+<p><em>Why:</em> an agent that could reach sandboard’s MCP could approve its own review. The
+containment is what makes the review boundary real.</p>
+<h2 id="liveness-is-observed"><a class="header" href="#liveness-is-observed">Liveness is observed</a></h2>
+<p>The supervisor parses the agent’s output stream. There is no timer-based
+keepalive.</p>
+<p><em>Why:</em> a keepalive can fire while the agent is wedged. Then the lease no longer
+means anything — and a wedged agent holding a valid lease is exactly the case
+the lease exists to catch.</p>
+<h2 id="merging-is-human"><a class="header" href="#merging-is-human">Merging is human</a></h2>
+<p>Approving in sandboard surfaces the pull request. It does not merge.</p>
+<p><em>Why:</em> merge is irreversible and needs a human. A card that passes every gate
+can still be building the wrong thing.</p>
+<h2 id="feature-branches-are-writable-the-default-branch-is-human-gated"><a class="header" href="#feature-branches-are-writable-the-default-branch-is-human-gated">Feature branches are writable; the default branch is human-gated</a></h2>
+<p>Agents push <code>sandboard/card-*</code> and open PRs. A repository ruleset keeps the default
+branch owner-only.</p>
+<p><em>Why:</em> defence in depth for the rule above. The boundary should hold even if
+sandboard has a bug.</p>
+<h2 id="everything-in-the-sandbox-stack-fails-as-a-hang"><a class="header" href="#everything-in-the-sandbox-stack-fails-as-a-hang">Everything in the sandbox stack fails as a hang</a></h2>
+<p>Denied egress, a missing credential, a wedged relay — all of it presents as
+silence, never as an error. Every exec carries a deadline, and silence is
+treated as failure.</p>
+<p><em>Why:</em> this is how the stack behaves, and it shapes the code thoroughly. It is
+why <code>openshell.rs</code> looks the way it does, and why “it is taking a while” usually
+means “it has already failed.”</p>
+<h2 id="conventions-that-follow-from-these"><a class="header" href="#conventions-that-follow-from-these">Conventions that follow from these</a></h2>
+<p><strong>Comments explain why, not what.</strong> A comment that restates the line below it is
+noise.</p>
+<p><strong>Describe how it works now.</strong> Docs, UI copy, MCP descriptions, and briefings
+should make sense to someone who never saw the previous design. Bug-history
+notes that justify a still-present invariant are fine; teaching the product by
+arguing with its past is not.</p>
+<p><strong>Tests name the failure they prevent</strong>, not the function they call.
+<code>machine.rs</code> holds the lifecycle invariants; other modules test what breaks
+silently — argv shape, shell quoting, config validation.</p>
+<h2 id="working-on-sandboard"><a class="header" href="#working-on-sandboard">Working on sandboard</a></h2>
+<pre><code class="language-bash">cargo test
+cargo clippy --all-targets -- -D warnings
+</code></pre>
+<p>Both must be clean. A card’s sandbox has no pre-baked sandboard build cache —
+<code>cargo</code>/<code>npm</code> reach crates.io/npm live (see <a href="#image">Sandbox</a>) — so
+<code>--offline</code> no longer applies there; <code>--locked</code> still does.</p>
+<p>Stage specific paths. <code>git add -A</code> has committed unintended local state here
+before.</p>
+<h3 id="building-these-docs"><a class="header" href="#building-these-docs">Building these docs</a></h3>
+<pre><code class="language-bash">make docs             # mdbook build → target/mdbook
+make docs-serve       # http://localhost:3000
+</code></pre>
+<p>Screenshots are <strong>not</strong> committed. CI captures them from a real board against
+the fixture in <code>web/ui-fixture.mjs</code> and drops them into <code>docs/images/</code> before
+mdBook runs, so a local <code>make docs</code> builds without them. To see them locally:</p>
+<pre><code class="language-bash">npm --prefix web run shots     # → web/shots/
+cp web/shots/*.png docs/images/
+</code></pre>
+<p>CI publishes <code>target/mdbook</code> to
+<a href="https://github.com/sandboard-app/sandboard-app.github.io"><code>sandboard-app/sandboard-app.github.io</code></a>
+via a write deploy key (<code>PAGES_DEPLOY_KEY</code>). The org’s <strong>Deploy keys</strong> setting
+must stay enabled.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="mermaid-eefea253.min.js"></script>
+        <script src="mermaid-init-ccf746f1.js"></script>
+        <script src="landing-76cb3bff.js"></script>
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+
+    </div>
+    </body>
+</html>
